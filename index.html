@@ -2,12 +2,14 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Form Order Undangan Website</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -55,9 +57,17 @@ body {
     margin-bottom: 18px;
 }
 
+.section-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 25px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
 .kategori {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
 }
 
@@ -142,14 +152,6 @@ textarea:focus {
     gap: 15px;
 }
 
-.section-title {
-    font-size: 15px;
-    font-weight: bold;
-    margin: 25px 0 15px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #eee;
-}
-
 .info {
     background: #f5f5f5;
     padding: 13px 15px;
@@ -159,6 +161,104 @@ textarea:focus {
     line-height: 1.6;
     margin-bottom: 20px;
 }
+
+.empty-form {
+    text-align: center;
+    padding: 35px 10px;
+    color: #999;
+    font-size: 14px;
+}
+
+
+/* ==========================
+   ACARA TAMBAHAN
+========================== */
+
+.acara-box {
+    border: 1px solid #e5e5e5;
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 15px;
+}
+
+.acara-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.acara-header strong {
+    font-size: 14px;
+}
+
+.btn-hapus {
+    border: none;
+    background: #ffe5e5;
+    color: #d00;
+    padding: 7px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-tambah {
+    width: 100%;
+    border: 1px dashed #aaa;
+    background: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-tambah:hover {
+    background: #f5f5f5;
+}
+
+
+/* ==========================
+   REKENING
+========================== */
+
+.rekening-box {
+    border: 1px solid #e5e5e5;
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 15px;
+}
+
+
+/* ==========================
+   MUSIK
+========================== */
+
+.music-option {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.music-option input {
+    width: auto;
+}
+
+.music-detail {
+    display: none;
+    margin-top: 10px;
+}
+
+
+/* ==========================
+   BUTTON
+========================== */
 
 .btn-wa {
     width: 100%;
@@ -176,18 +276,16 @@ textarea:focus {
     background: #1ebe5d;
 }
 
-.empty-form {
-    text-align: center;
-    padding: 35px 10px;
-    color: #999;
-    font-size: 14px;
-}
-
 .footer {
     text-align: center;
     font-size: 12px;
     color: #999;
 }
+
+
+/* ==========================
+   MOBILE
+========================== */
 
 @media(max-width:650px) {
 
@@ -211,249 +309,319 @@ textarea:focus {
         grid-template-columns: 1fr;
         gap: 0;
     }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
+
 <div class="container">
 
-    <!-- HEADER -->
-    <div class="header">
-        <h1>Form Order Undangan Website</h1>
-        <p>Silakan pilih kategori acara dan lengkapi data pesanan.</p>
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>Form Order Undangan Website</h1>
+
+    <p>
+        Silakan pilih kategori acara dan lengkapi data pesanan.
+    </p>
+
+</div>
+
+
+
+<!-- ==========================
+     KATEGORI
+========================== -->
+
+<div class="card">
+
+    <div class="card-title">
+        1. Pilih Kategori Acara
     </div>
 
 
-    <!-- KATEGORI -->
-    <div class="card">
+    <div class="kategori">
 
-        <div class="card-title">
-            1. Pilih Kategori Acara
+        <div class="kategori-item"
+             onclick="pilihKategori('Pernikahan',this)">
+            <span class="kategori-icon">💍</span>
+            Pernikahan
         </div>
 
-        <div class="kategori">
 
-            <div class="kategori-item"
-                 onclick="pilihKategori('Pernikahan', this)">
-                <span class="kategori-icon">💍</span>
-                Pernikahan
-            </div>
-
-            <div class="kategori-item"
-                 onclick="pilihKategori('Lamaran', this)">
-                <span class="kategori-icon">💐</span>
-                Lamaran
-            </div>
-
-            <div class="kategori-item"
-                 onclick="pilihKategori('Tunangan', this)">
-                <span class="kategori-icon">💎</span>
-                Tunangan
-            </div>
-
-            <div class="kategori-item"
-                 onclick="pilihKategori('Khitanan', this)">
-                <span class="kategori-icon">✨</span>
-                Khitanan
-            </div>
-
-            <div class="kategori-item"
-                 onclick="pilihKategori('Aqiqah', this)">
-                <span class="kategori-icon">👶</span>
-                Aqiqah
-            </div>
-
-            <div class="kategori-item"
-                 onclick="pilihKategori('Ulang Tahun', this)">
-                <span class="kategori-icon">🎂</span>
-                Ulang Tahun
-            </div>
-
-            <div class="kategori-item"
-                 onclick="pilihKategori('Party & Dinner', this)">
-                <span class="kategori-icon">🥂</span>
-                Party & Dinner
-            </div>
-
-            <div class="kategori-item"
-                 onclick="pilihKategori('Grand Opening', this)">
-                <span class="kategori-icon">🎉</span>
-                Grand Opening
-            </div>
-
-            <div class="kategori-item"
-                 onclick="pilihKategori('Purnabakti', this)">
-                <span class="kategori-icon">🏆</span>
-                Purnabakti
-            </div>
-
-            <div class="kategori-item"
-                 onclick="pilihKategori('Lainnya', this)">
-                <span class="kategori-icon">📋</span>
-                Lainnya
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- FORM DINAMIS -->
-    <div class="card">
-
-        <div class="card-title">
-            2. Isi Data Pesanan
+        <div class="kategori-item"
+             onclick="pilihKategori('Lamaran',this)">
+            <span class="kategori-icon">💐</span>
+            Lamaran
         </div>
 
-        <div class="selected-category">
-            Kategori:
-            <strong id="kategoriTerpilih">
-                Belum dipilih
-            </strong>
+
+        <div class="kategori-item"
+             onclick="pilihKategori('Tunangan',this)">
+            <span class="kategori-icon">💎</span>
+            Tunangan
         </div>
 
-        <div id="formDinamis">
 
-            <div class="empty-form">
-                Silakan pilih kategori acara terlebih dahulu.
-            </div>
-
+        <div class="kategori-item"
+             onclick="pilihKategori('Khitanan',this)">
+            <span class="kategori-icon">✨</span>
+            Khitanan
         </div>
 
-    </div>
 
-
-    <!-- TOMBOL WHATSAPP -->
-    <div class="card">
-
-        <div class="card-title">
-            3. Kirim Pesanan
+        <div class="kategori-item"
+             onclick="pilihKategori('Aqiqah',this)">
+            <span class="kategori-icon">👶</span>
+            Aqiqah
         </div>
 
-        <div class="info">
-            Pastikan data yang diisi sudah benar.
-            Setelah tombol ditekan, data akan otomatis dikirim
-            ke WhatsApp admin.
+
+        <div class="kategori-item"
+             onclick="pilihKategori('Ulang Tahun',this)">
+            <span class="kategori-icon">🎂</span>
+            Ulang Tahun
         </div>
 
-        <button class="btn-wa" onclick="kirimWhatsApp()">
-            💬 Kirim Pesanan via WhatsApp
-        </button>
 
-    </div>
+        <div class="kategori-item"
+             onclick="pilihKategori('Party & Dinner',this)">
+            <span class="kategori-icon">🥂</span>
+            Party & Dinner
+        </div>
 
 
-    <div class="footer">
-        © 2026 MSA Invitation
+        <div class="kategori-item"
+             onclick="pilihKategori('Grand Opening',this)">
+            <span class="kategori-icon">🎉</span>
+            Grand Opening
+        </div>
+
+
+        <div class="kategori-item"
+             onclick="pilihKategori('Purnabakti',this)">
+            <span class="kategori-icon">🏆</span>
+            Purnabakti
+        </div>
+
+
+        <div class="kategori-item"
+             onclick="pilihKategori('Lainnya',this)">
+            <span class="kategori-icon">📋</span>
+            Lainnya
+        </div>
+
     </div>
 
 </div>
 
 
+
+<!-- ==========================
+     FORM
+========================== -->
+
+<div class="card">
+
+    <div class="card-title">
+        2. Isi Data Pesanan
+    </div>
+
+
+    <div class="selected-category">
+
+        Kategori:
+        <strong id="kategoriTerpilih">
+            Belum dipilih
+        </strong>
+
+    </div>
+
+
+    <div id="formDinamis">
+
+        <div class="empty-form">
+
+            Silakan pilih kategori acara terlebih dahulu.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==========================
+     TOMBOL WA
+========================== -->
+
+<div class="card">
+
+    <div class="card-title">
+        3. Kirim Pesanan
+    </div>
+
+
+    <div class="info">
+
+        Pastikan semua data yang diisi sudah benar.
+        Setelah tombol ditekan, data akan otomatis
+        dikirim ke WhatsApp admin.
+
+    </div>
+
+
+    <button
+        class="btn-wa"
+        onclick="kirimWhatsApp()">
+
+        💬 Kirim Pesanan via WhatsApp
+
+    </button>
+
+</div>
+
+
+
+<div class="footer">
+
+    © 2026 MSA Invitation
+
+</div>
+
+
+</div>
+
+
+
 <script>
 
-/* ==========================================
-   NOMOR WHATSAPP ADMIN
-========================================== */
-
-const nomorAdmin = "6281261233730";
-
 
 /* ==========================================
-   KATEGORI AKTIF
+   NOMOR ADMIN
 ========================================== */
+
+const nomorAdmin = "6281234567890";
+
 
 let kategoriDipilih = "";
+
+let jumlahAcara = 0;
+
+let jumlahRekening = 0;
+
 
 
 /* ==========================================
    PILIH KATEGORI
 ========================================== */
 
-function pilihKategori(kategori, element) {
+function pilihKategori(kategori,element) {
 
     kategoriDipilih = kategori;
 
-    // Hilangkan active
-    document.querySelectorAll(".kategori-item")
+    document
+        .querySelectorAll(".kategori-item")
         .forEach(item => {
             item.classList.remove("active");
         });
 
-    // Aktifkan kategori
+
     element.classList.add("active");
 
-    // Tampilkan nama kategori
-    document.getElementById("kategoriTerpilih").textContent = kategori;
 
-    // Buat form sesuai kategori
+    document
+        .getElementById("kategoriTerpilih")
+        .textContent = kategori;
+
+
+    jumlahAcara = 0;
+
+    jumlahRekening = 0;
+
+
     buatForm(kategori);
 
 }
 
 
+
 /* ==========================================
-   TEMPLATE FORM
+   INPUT
 ========================================== */
 
-function input(label, id, placeholder = "", required = false) {
+function input(label,id,placeholder="") {
 
     return `
-        <div class="form-group">
 
-            <label>
-                ${label}
-                ${required ? '<span class="required">*</span>' : ''}
-            </label>
+    <div class="form-group">
 
-            <input
-                type="text"
-                id="${id}"
-                placeholder="${placeholder}"
-            >
+        <label>${label}</label>
 
-        </div>
+        <input
+            type="text"
+            id="${id}"
+            placeholder="${placeholder}"
+        >
+
+    </div>
+
     `;
+
 }
 
 
-function textarea(label, id, placeholder = "") {
+function textarea(label,id,placeholder="") {
 
     return `
-        <div class="form-group">
 
-            <label>${label}</label>
+    <div class="form-group">
 
-            <textarea
-                id="${id}"
-                placeholder="${placeholder}"
-            ></textarea>
+        <label>${label}</label>
 
-        </div>
+        <textarea
+            id="${id}"
+            placeholder="${placeholder}"
+        ></textarea>
+
+    </div>
+
     `;
+
 }
 
 
-function tanggal(label, id) {
+function tanggal(label,id) {
 
     return `
-        <div class="form-group">
 
-            <label>${label}</label>
+    <div class="form-group">
 
-            <input
-                type="date"
-                id="${id}"
-            >
+        <label>${label}</label>
 
-        </div>
+        <input
+            type="date"
+            id="${id}"
+        >
+
+    </div>
+
     `;
+
 }
+
 
 
 /* ==========================================
-   FORM BERDASARKAN KATEGORI
+   FORM UTAMA
 ========================================== */
 
 function buatForm(kategori) {
@@ -461,789 +629,1214 @@ function buatForm(kategori) {
     let html = "";
 
 
-    /* ==============================
-       DATA UMUM
-    ============================== */
+    /* DATA UMUM */
 
     html += `
+
         ${input(
             "Nama / Link Tema Undangan",
             "tema",
-            "Contoh: Art Blue Java / link tema",
-            true
+            "Contoh: Art Blue Java / link tema"
         )}
 
         ${input(
             "Nama Pemesan",
             "namaPemesan",
-            "Nama lengkap pemesan",
-            true
+            "Nama lengkap pemesan"
         )}
 
         ${input(
             "Nomor WhatsApp",
             "noWa",
-            "Contoh: 08123456789",
-            true
+            "Contoh: 08123456789"
         )}
+
     `;
 
 
-    /* ==============================
+    /* ======================================
        PERNIKAHAN
-    ============================== */
+    ====================================== */
 
-    if (kategori === "Pernikahan") {
-
-        html += `
-
-            <div class="section-title">
-                Data Pengantin
-            </div>
-
-            <div class="row">
-
-                ${input(
-                    "Nama Lengkap Pengantin Pria",
-                    "namaPria",
-                    "Nama lengkap pria"
-                )}
-
-                ${input(
-                    "Nama Lengkap Pengantin Wanita",
-                    "namaWanita",
-                    "Nama lengkap wanita"
-                )}
-
-            </div>
-
-            <div class="row">
-
-                ${input(
-                    "Nama Panggilan Pria",
-                    "panggilanPria",
-                    "Contoh: Andi"
-                )}
-
-                ${input(
-                    "Nama Panggilan Wanita",
-                    "panggilanWanita",
-                    "Contoh: Sinta"
-                )}
-
-            </div>
-
-            <div class="row">
-
-                ${textarea(
-                    "Nama Orang Tua Pria",
-                    "ortuPria",
-                    "Bapak ...\\nIbu ..."
-                )}
-
-                ${textarea(
-                    "Nama Orang Tua Wanita",
-                    "ortuWanita",
-                    "Bapak ...\\nIbu ..."
-                )}
-
-            </div>
-
-
-            <div class="section-title">
-                Data Akad
-            </div>
-
-            <div class="row">
-
-                ${tanggal("Tanggal Akad", "tanggalAkad")}
-
-                ${input(
-                    "Waktu Akad",
-                    "waktuAkad",
-                    "Contoh: 09.00 WIB"
-                )}
-
-            </div>
-
-            ${input(
-                "Lokasi Akad",
-                "lokasiAkad",
-                "Nama tempat akad"
-            )}
-
-            ${textarea(
-                "Alamat Akad",
-                "alamatAkad",
-                "Alamat lengkap"
-            )}
-
-
-            <div class="section-title">
-                Data Resepsi
-            </div>
-
-            <div class="row">
-
-                ${tanggal("Tanggal Resepsi", "tanggalResepsi")}
-
-                ${input(
-                    "Waktu Resepsi",
-                    "waktuResepsi",
-                    "Contoh: 11.00 - selesai"
-                )}
-
-            </div>
-
-            ${input(
-                "Lokasi Resepsi",
-                "lokasiResepsi",
-                "Nama gedung / tempat"
-            )}
-
-            ${textarea(
-                "Alamat Resepsi",
-                "alamatResepsi",
-                "Alamat lengkap"
-            )}
-
-            ${input(
-                "Link Google Maps",
-                "maps",
-                "https://maps.google.com/..."
-            )}
-
-            ${textarea(
-                "Love Story / Catatan Tambahan",
-                "catatan",
-                "Tulis catatan tambahan..."
-            )}
-        `;
-    }
-
-
-    /* ==============================
-       LAMARAN
-    ============================== */
-
-    else if (kategori === "Lamaran" || kategori === "Tunangan") {
+    if(kategori === "Pernikahan") {
 
         html += `
 
-            <div class="section-title">
-                Data Pasangan
-            </div>
+        <div class="section-title">
+            Data Pengantin
+        </div>
 
-            <div class="row">
 
-                ${input(
-                    "Nama Pria",
-                    "namaPria",
-                    "Nama lengkap pria"
-                )}
-
-                ${input(
-                    "Nama Wanita",
-                    "namaWanita",
-                    "Nama lengkap wanita"
-                )}
-
-            </div>
+        <div class="row">
 
             ${input(
-                "Nama Orang Tua / Keluarga",
-                "keluarga",
-                "Nama keluarga yang dicantumkan"
+                "Nama Lengkap Pengantin Pria",
+                "namaPria"
             )}
 
-            <div class="section-title">
-                Detail Acara
-            </div>
+            ${input(
+                "Nama Lengkap Pengantin Wanita",
+                "namaWanita"
+            )}
 
-            <div class="row">
+        </div>
 
-                ${tanggal(
-                    "Tanggal Acara",
-                    "tanggalAcara"
-                )}
 
-                ${input(
-                    "Waktu Acara",
-                    "waktuAcara",
-                    "Contoh: 10.00 WIB"
-                )}
-
-            </div>
+        <div class="row">
 
             ${input(
-                "Nama Tempat",
-                "tempat",
-                "Nama tempat acara"
+                "Nama Panggilan Pria",
+                "panggilanPria"
+            )}
+
+            ${input(
+                "Nama Panggilan Wanita",
+                "panggilanWanita"
+            )}
+
+        </div>
+
+
+        <div class="row">
+
+            ${textarea(
+                "Nama Orang Tua Pria",
+                "ortuPria"
             )}
 
             ${textarea(
-                "Alamat Acara",
-                "alamat",
-                "Alamat lengkap"
+                "Nama Orang Tua Wanita",
+                "ortuWanita"
+            )}
+
+        </div>
+
+
+        <div class="section-title">
+            Data Akad
+        </div>
+
+
+        <div class="row">
+
+            ${tanggal(
+                "Tanggal Akad",
+                "tanggalAkad"
             )}
 
             ${input(
-                "Link Google Maps",
-                "maps",
-                "https://maps.google.com/..."
+                "Waktu Akad",
+                "waktuAkad",
+                "Contoh: 09.00 WIB"
             )}
 
-            ${textarea(
-                "Catatan Tambahan",
-                "catatan",
-                "Catatan untuk admin"
+        </div>
+
+
+        ${input(
+            "Lokasi Akad",
+            "lokasiAkad"
+        )}
+
+
+        ${textarea(
+            "Alamat Akad",
+            "alamatAkad"
+        )}
+
+
+        <div class="section-title">
+            Data Resepsi
+        </div>
+
+
+        <div class="row">
+
+            ${tanggal(
+                "Tanggal Resepsi",
+                "tanggalResepsi"
             )}
+
+            ${input(
+                "Waktu Resepsi",
+                "waktuResepsi"
+            )}
+
+        </div>
+
+
+        ${input(
+            "Lokasi Resepsi",
+            "lokasiResepsi"
+        )}
+
+
+        ${textarea(
+            "Alamat Resepsi",
+            "alamatResepsi"
+        )}
+
+
+        ${input(
+            "Link Google Maps",
+            "maps"
+        )}
+
         `;
+
     }
 
 
-    /* ==============================
+    /* ======================================
+       LAMARAN / TUNANGAN
+    ====================================== */
+
+    else if(
+        kategori === "Lamaran" ||
+        kategori === "Tunangan"
+    ) {
+
+        html += `
+
+        <div class="section-title">
+            Data Pasangan
+        </div>
+
+
+        <div class="row">
+
+            ${input(
+                "Nama Pria",
+                "namaPria"
+            )}
+
+            ${input(
+                "Nama Wanita",
+                "namaWanita"
+            )}
+
+        </div>
+
+
+        ${textarea(
+            "Nama Orang Tua / Keluarga",
+            "keluarga"
+        )}
+
+
+        <div class="section-title">
+            Detail Acara
+        </div>
+
+
+        <div class="row">
+
+            ${tanggal(
+                "Tanggal Acara",
+                "tanggalAcara"
+            )}
+
+            ${input(
+                "Waktu Acara",
+                "waktuAcara"
+            )}
+
+        </div>
+
+
+        ${input(
+            "Nama Tempat",
+            "tempat"
+        )}
+
+
+        ${textarea(
+            "Alamat Acara",
+            "alamat"
+        )}
+
+
+        ${input(
+            "Link Google Maps",
+            "maps"
+        )}
+
+        `;
+
+    }
+
+
+    /* ======================================
        KHITANAN
-    ============================== */
+    ====================================== */
 
-    else if (kategori === "Khitanan") {
+    else if(kategori === "Khitanan") {
 
         html += `
 
-            <div class="section-title">
-                Data Anak
-            </div>
+        <div class="section-title">
+            Data Anak
+        </div>
 
-            ${input(
-                "Nama Lengkap Anak",
-                "namaAnak",
-                "Nama lengkap anak"
+
+        ${input(
+            "Nama Lengkap Anak",
+            "namaAnak"
+        )}
+
+
+        ${input(
+            "Nama Panggilan Anak",
+            "panggilanAnak"
+        )}
+
+
+        ${input(
+            "Nama Orang Tua",
+            "namaOrtu"
+        )}
+
+
+        <div class="section-title">
+            Detail Acara
+        </div>
+
+
+        <div class="row">
+
+            ${tanggal(
+                "Tanggal Acara",
+                "tanggalAcara"
             )}
 
             ${input(
-                "Nama Panggilan Anak",
-                "panggilanAnak",
-                "Nama panggilan"
+                "Waktu Acara",
+                "waktuAcara"
             )}
 
-            ${input(
-                "Nama Orang Tua",
-                "namaOrtu",
-                "Bapak ... & Ibu ..."
-            )}
+        </div>
 
-            <div class="section-title">
-                Detail Acara
-            </div>
 
-            <div class="row">
+        ${input(
+            "Nama Tempat",
+            "tempat"
+        )}
 
-                ${tanggal(
-                    "Tanggal Acara",
-                    "tanggalAcara"
-                )}
 
-                ${input(
-                    "Waktu Acara",
-                    "waktuAcara",
-                    "Contoh: 10.00 WIB"
-                )}
+        ${textarea(
+            "Alamat",
+            "alamat"
+        )}
 
-            </div>
 
-            ${input(
-                "Nama Tempat",
-                "tempat",
-                "Nama tempat"
-            )}
+        ${input(
+            "Link Google Maps",
+            "maps"
+        )}
 
-            ${textarea(
-                "Alamat Acara",
-                "alamat",
-                "Alamat lengkap"
-            )}
-
-            ${input(
-                "Link Google Maps",
-                "maps",
-                "https://maps.google.com/..."
-            )}
-
-            ${textarea(
-                "Catatan Tambahan",
-                "catatan",
-                "Catatan untuk admin"
-            )}
         `;
+
     }
 
 
-    /* ==============================
+    /* ======================================
        AQIQAH
-    ============================== */
+    ====================================== */
 
-    else if (kategori === "Aqiqah") {
+    else if(kategori === "Aqiqah") {
 
         html += `
 
-            <div class="section-title">
-                Data Anak
-            </div>
+        <div class="section-title">
+            Data Anak
+        </div>
 
-            ${input(
-                "Nama Lengkap Anak",
-                "namaAnak",
-                "Nama lengkap anak"
+
+        ${input(
+            "Nama Lengkap Anak",
+            "namaAnak"
+        )}
+
+
+        ${input(
+            "Nama Panggilan Anak",
+            "panggilanAnak"
+        )}
+
+
+        ${input(
+            "Jenis Kelamin",
+            "jenisKelamin",
+            "Putra / Putri"
+        )}
+
+
+        ${input(
+            "Nama Orang Tua",
+            "namaOrtu"
+        )}
+
+
+        <div class="section-title">
+            Detail Acara
+        </div>
+
+
+        <div class="row">
+
+            ${tanggal(
+                "Tanggal Acara",
+                "tanggalAcara"
             )}
 
             ${input(
-                "Nama Panggilan Anak",
-                "panggilanAnak",
-                "Nama panggilan"
+                "Waktu Acara",
+                "waktuAcara"
             )}
 
-            ${input(
-                "Nama Orang Tua",
-                "namaOrtu",
-                "Bapak ... & Ibu ..."
-            )}
+        </div>
 
-            ${input(
-                "Nama / Jenis Kelamin Anak",
-                "jenisKelamin",
-                "Contoh: Putra / Putri"
-            )}
 
-            <div class="section-title">
-                Detail Acara
-            </div>
+        ${input(
+            "Nama Tempat",
+            "tempat"
+        )}
 
-            <div class="row">
 
-                ${tanggal(
-                    "Tanggal Acara",
-                    "tanggalAcara"
-                )}
+        ${textarea(
+            "Alamat",
+            "alamat"
+        )}
 
-                ${input(
-                    "Waktu Acara",
-                    "waktuAcara",
-                    "Contoh: 10.00 WIB"
-                )}
 
-            </div>
+        ${input(
+            "Link Google Maps",
+            "maps"
+        )}
 
-            ${input(
-                "Nama Tempat",
-                "tempat",
-                "Nama tempat"
-            )}
-
-            ${textarea(
-                "Alamat Acara",
-                "alamat",
-                "Alamat lengkap"
-            )}
-
-            ${input(
-                "Link Google Maps",
-                "maps",
-                "https://maps.google.com/..."
-            )}
-
-            ${textarea(
-                "Catatan Tambahan",
-                "catatan",
-                "Catatan untuk admin"
-            )}
         `;
+
     }
 
 
-    /* ==============================
+    /* ======================================
        ULANG TAHUN
-    ============================== */
+    ====================================== */
 
-    else if (kategori === "Ulang Tahun") {
-
-        html += `
-
-            <div class="section-title">
-                Data Yang Berulang Tahun
-            </div>
-
-            ${input(
-                "Nama",
-                "nama",
-                "Nama yang berulang tahun"
-            )}
-
-            ${input(
-                "Usia",
-                "usia",
-                "Contoh: 25 Tahun"
-            )}
-
-            <div class="section-title">
-                Detail Acara
-            </div>
-
-            <div class="row">
-
-                ${tanggal(
-                    "Tanggal Acara",
-                    "tanggalAcara"
-                )}
-
-                ${input(
-                    "Waktu Acara",
-                    "waktuAcara",
-                    "Contoh: 19.00 WIB"
-                )}
-
-            </div>
-
-            ${input(
-                "Nama Tempat",
-                "tempat",
-                "Nama tempat"
-            )}
-
-            ${textarea(
-                "Alamat Acara",
-                "alamat",
-                "Alamat lengkap"
-            )}
-
-            ${input(
-                "Link Google Maps",
-                "maps",
-                "https://maps.google.com/..."
-            )}
-
-            ${textarea(
-                "Catatan Tambahan",
-                "catatan",
-                "Catatan untuk admin"
-            )}
-        `;
-    }
-
-
-    /* ==============================
-       PARTY & DINNER
-    ============================== */
-
-    else if (kategori === "Party & Dinner") {
+    else if(kategori === "Ulang Tahun") {
 
         html += `
 
-            <div class="section-title">
-                Detail Acara
-            </div>
+        <div class="section-title">
+            Data Yang Berulang Tahun
+        </div>
 
-            ${input(
-                "Nama Acara",
-                "namaAcara",
-                "Contoh: Birthday Dinner"
+
+        ${input(
+            "Nama",
+            "nama"
+        )}
+
+
+        ${input(
+            "Usia",
+            "usia"
+        )}
+
+
+        <div class="section-title">
+            Detail Acara
+        </div>
+
+
+        <div class="row">
+
+            ${tanggal(
+                "Tanggal Acara",
+                "tanggalAcara"
             )}
 
             ${input(
-                "Host / Penyelenggara",
-                "host",
-                "Nama penyelenggara"
+                "Waktu Acara",
+                "waktuAcara"
             )}
 
-            <div class="row">
+        </div>
 
-                ${tanggal(
-                    "Tanggal Acara",
-                    "tanggalAcara"
-                )}
 
-                ${input(
-                    "Waktu Acara",
-                    "waktuAcara",
-                    "Contoh: 19.00 WIB"
-                )}
+        ${input(
+            "Nama Tempat",
+            "tempat"
+        )}
 
-            </div>
 
-            ${input(
-                "Nama Tempat",
-                "tempat",
-                "Nama restoran / tempat"
-            )}
+        ${textarea(
+            "Alamat",
+            "alamat"
+        )}
 
-            ${textarea(
-                "Alamat",
-                "alamat",
-                "Alamat lengkap"
-            )}
 
-            ${input(
-                "Link Google Maps",
-                "maps",
-                "https://maps.google.com/..."
-            )}
+        ${input(
+            "Link Google Maps",
+            "maps"
+        )}
 
-            ${textarea(
-                "Catatan Tambahan",
-                "catatan",
-                "Catatan untuk admin"
-            )}
         `;
+
     }
 
 
-    /* ==============================
+    /* ======================================
+       PARTY
+    ====================================== */
+
+    else if(kategori === "Party & Dinner") {
+
+        html += `
+
+        <div class="section-title">
+            Detail Acara
+        </div>
+
+
+        ${input(
+            "Nama Acara",
+            "namaAcara"
+        )}
+
+
+        ${input(
+            "Host / Penyelenggara",
+            "host"
+        )}
+
+
+        <div class="row">
+
+            ${tanggal(
+                "Tanggal Acara",
+                "tanggalAcara"
+            )}
+
+            ${input(
+                "Waktu Acara",
+                "waktuAcara"
+            )}
+
+        </div>
+
+
+        ${input(
+            "Nama Tempat",
+            "tempat"
+        )}
+
+
+        ${textarea(
+            "Alamat",
+            "alamat"
+        )}
+
+
+        ${input(
+            "Link Google Maps",
+            "maps"
+        )}
+
+        `;
+
+    }
+
+
+    /* ======================================
        GRAND OPENING
-    ============================== */
+    ====================================== */
 
-    else if (kategori === "Grand Opening") {
+    else if(kategori === "Grand Opening") {
 
         html += `
 
-            <div class="section-title">
-                Data Usaha
-            </div>
+        <div class="section-title">
+            Data Usaha
+        </div>
 
-            ${input(
-                "Nama Usaha / Bisnis",
-                "namaUsaha",
-                "Nama usaha"
+
+        ${input(
+            "Nama Usaha / Bisnis",
+            "namaUsaha"
+        )}
+
+
+        ${input(
+            "Jenis Usaha",
+            "jenisUsaha"
+        )}
+
+
+        ${input(
+            "Nama Pemilik",
+            "namaPemilik"
+        )}
+
+
+        <div class="section-title">
+            Detail Grand Opening
+        </div>
+
+
+        <div class="row">
+
+            ${tanggal(
+                "Tanggal Acara",
+                "tanggalAcara"
             )}
 
             ${input(
-                "Jenis Usaha",
-                "jenisUsaha",
-                "Contoh: Futsal, Cafe, Salon"
+                "Waktu Acara",
+                "waktuAcara"
             )}
 
-            ${input(
-                "Nama Pemilik",
-                "namaPemilik",
-                "Nama pemilik"
-            )}
+        </div>
 
-            <div class="section-title">
-                Detail Grand Opening
-            </div>
 
-            <div class="row">
+        ${input(
+            "Nama Lokasi",
+            "tempat"
+        )}
 
-                ${tanggal(
-                    "Tanggal Grand Opening",
-                    "tanggalAcara"
-                )}
 
-                ${input(
-                    "Waktu Acara",
-                    "waktuAcara",
-                    "Contoh: 09.00 WIB"
-                )}
+        ${textarea(
+            "Alamat",
+            "alamat"
+        )}
 
-            </div>
 
-            ${input(
-                "Nama Lokasi",
-                "tempat",
-                "Nama tempat / usaha"
-            )}
+        ${input(
+            "Link Google Maps",
+            "maps"
+        )}
 
-            ${textarea(
-                "Alamat",
-                "alamat",
-                "Alamat lengkap"
-            )}
-
-            ${input(
-                "Link Google Maps",
-                "maps",
-                "https://maps.google.com/..."
-            )}
-
-            ${textarea(
-                "Catatan Tambahan",
-                "catatan",
-                "Catatan untuk admin"
-            )}
         `;
+
     }
 
 
-    /* ==============================
+    /* ======================================
        PURNABAKTI
-    ============================== */
+    ====================================== */
 
-    else if (kategori === "Purnabakti") {
+    else if(kategori === "Purnabakti") {
 
         html += `
 
-            <div class="section-title">
-                Data Purnabakti
-            </div>
+        <div class="section-title">
+            Data Purnabakti
+        </div>
 
-            ${input(
-                "Nama Lengkap",
-                "nama",
-                "Nama yang memasuki purnabakti"
+
+        ${input(
+            "Nama Lengkap",
+            "nama"
+        )}
+
+
+        ${input(
+            "Jabatan",
+            "jabatan"
+        )}
+
+
+        ${input(
+            "Instansi / Sekolah",
+            "instansi"
+        )}
+
+
+        <div class="section-title">
+            Detail Acara
+        </div>
+
+
+        <div class="row">
+
+            ${tanggal(
+                "Tanggal Acara",
+                "tanggalAcara"
             )}
 
             ${input(
-                "Jabatan",
-                "jabatan",
-                "Jabatan terakhir"
+                "Waktu Acara",
+                "waktuAcara"
             )}
 
-            ${input(
-                "Instansi / Sekolah",
-                "instansi",
-                "Nama instansi"
-            )}
+        </div>
 
-            <div class="section-title">
-                Detail Acara
-            </div>
 
-            <div class="row">
+        ${input(
+            "Nama Tempat",
+            "tempat"
+        )}
 
-                ${tanggal(
-                    "Tanggal Acara",
-                    "tanggalAcara"
-                )}
 
-                ${input(
-                    "Waktu Acara",
-                    "waktuAcara",
-                    "Contoh: 09.00 WIB"
-                )}
+        ${textarea(
+            "Alamat",
+            "alamat"
+        )}
 
-            </div>
 
-            ${input(
-                "Nama Tempat",
-                "tempat",
-                "Nama tempat"
-            )}
+        ${input(
+            "Link Google Maps",
+            "maps"
+        )}
 
-            ${textarea(
-                "Alamat",
-                "alamat",
-                "Alamat lengkap"
-            )}
-
-            ${input(
-                "Link Google Maps",
-                "maps",
-                "https://maps.google.com/..."
-            )}
-
-            ${textarea(
-                "Catatan Tambahan",
-                "catatan",
-                "Catatan untuk admin"
-            )}
         `;
+
     }
 
 
-    /* ==============================
+    /* ======================================
        LAINNYA
-    ============================== */
+    ====================================== */
 
     else {
 
         html += `
 
-            <div class="section-title">
-                Detail Acara
-            </div>
+        <div class="section-title">
+            Detail Acara
+        </div>
 
-            ${input(
-                "Nama Acara",
-                "namaAcara",
-                "Nama acara"
+
+        ${input(
+            "Nama Acara",
+            "namaAcara"
+        )}
+
+
+        ${input(
+            "Nama Penyelenggara",
+            "penyelenggara"
+        )}
+
+
+        <div class="row">
+
+            ${tanggal(
+                "Tanggal Acara",
+                "tanggalAcara"
             )}
 
             ${input(
-                "Nama Penyelenggara",
-                "penyelenggara",
-                "Nama penyelenggara"
+                "Waktu Acara",
+                "waktuAcara"
             )}
 
-            <div class="row">
+        </div>
 
-                ${tanggal(
-                    "Tanggal Acara",
-                    "tanggalAcara"
-                )}
 
-                ${input(
-                    "Waktu Acara",
-                    "waktuAcara",
-                    "Contoh: 10.00 WIB"
-                )}
+        ${input(
+            "Nama Tempat",
+            "tempat"
+        )}
 
-            </div>
 
-            ${input(
-                "Nama Tempat",
-                "tempat",
-                "Nama tempat"
-            )}
+        ${textarea(
+            "Alamat",
+            "alamat"
+        )}
 
-            ${textarea(
-                "Alamat Acara",
-                "alamat",
-                "Alamat lengkap"
-            )}
 
-            ${input(
-                "Link Google Maps",
-                "maps",
-                "https://maps.google.com/..."
-            )}
+        ${input(
+            "Link Google Maps",
+            "maps"
+        )}
 
-            ${textarea(
-                "Detail / Catatan Tambahan",
-                "catatan",
-                "Tulis informasi acara lainnya..."
-            )}
         `;
+
     }
 
 
-    // Tampilkan form
-    document.getElementById("formDinamis").innerHTML = html;
+    /* ======================================
+       BAGIAN TAMBAHAN
+    ====================================== */
 
-    // Scroll ke form
-    setTimeout(() => {
+    html += `
 
-        document.getElementById("formDinamis")
-            .scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+        <div class="section-title">
+            Acara Tambahan
+        </div>
 
-    }, 100);
+
+        <div class="info">
+
+            Jika ada acara tambahan seperti
+            pengajian, siraman, makan bersama,
+            doa bersama, atau acara lainnya,
+            silakan tambahkan di sini.
+
+        </div>
+
+
+        <div id="acaraTambahan"></div>
+
+
+        <button
+            type="button"
+            class="btn-tambah"
+            onclick="tambahAcara()">
+
+            + Tambah Acara
+
+        </button>
+
+
+
+        <div class="section-title">
+            Rekening / E-Wallet
+        </div>
+
+
+        <div class="info">
+
+            Maksimal 2 rekening.
+            Bisa menggunakan Bank atau E-Wallet.
+
+        </div>
+
+
+        <div id="rekeningContainer"></div>
+
+
+        <button
+            type="button"
+            class="btn-tambah"
+            onclick="tambahRekening()">
+
+            + Tambah Rekening / E-Wallet
+
+        </button>
+
+
+
+        <div class="section-title">
+            Kirim Kado
+        </div>
+
+
+        ${textarea(
+            "Alamat Pengiriman Kado",
+            "alamatKado",
+            "Tuliskan alamat lengkap untuk pengiriman kado..."
+        )}
+
+
+
+        <div class="section-title">
+            Musik Undangan
+        </div>
+
+
+        <div class="music-option">
+
+            <input
+                type="radio"
+                name="musik"
+                value="Judul Lagu"
+                onchange="pilihMusik('judul')">
+
+            <span>
+                Menggunakan Judul Lagu
+            </span>
+
+        </div>
+
+
+        <div
+            id="musikJudul"
+            class="music-detail">
+
+            ${input(
+                "Judul Lagu",
+                "judulLagu",
+                "Contoh: A Thousand Years"
+            )}
+
+        </div>
+
+
+
+        <div class="music-option">
+
+            <input
+                type="radio"
+                name="musik"
+                value="Link YouTube"
+                onchange="pilihMusik('youtube')">
+
+            <span>
+                Menggunakan Link YouTube
+            </span>
+
+        </div>
+
+
+        <div
+            id="musikYoutube"
+            class="music-detail">
+
+            ${input(
+                "Link YouTube",
+                "linkYoutube",
+                "https://youtube.com/..."
+            )}
+
+        </div>
+
+
+
+        <div class="music-option">
+
+            <input
+                type="radio"
+                name="musik"
+                value="Tidak Menggunakan Musik"
+                onchange="pilihMusik('tidak')">
+
+            <span>
+                Tidak Menggunakan Musik
+            </span>
+
+        </div>
+
+
+
+        ${textarea(
+            "Catatan Tambahan",
+            "catatan",
+            "Tulis permintaan atau catatan lainnya..."
+        )}
+
+    `;
+
+
+    document
+        .getElementById("formDinamis")
+        .innerHTML = html;
+
 }
 
 
+
 /* ==========================================
-   AMBIL NILAI INPUT
+   TAMBAH ACARA
+========================================== */
+
+function tambahAcara() {
+
+    if(jumlahAcara >= 10) {
+
+        alert("Maksimal 10 acara tambahan.");
+
+        return;
+
+    }
+
+
+    jumlahAcara++;
+
+
+    const container =
+        document.getElementById("acaraTambahan");
+
+
+    const box =
+        document.createElement("div");
+
+
+    box.className = "acara-box";
+
+
+    box.id =
+        "acara-" + jumlahAcara;
+
+
+    box.innerHTML = `
+
+        <div class="acara-header">
+
+            <strong>
+                Acara Tambahan ${jumlahAcara}
+            </strong>
+
+            <button
+                type="button"
+                class="btn-hapus"
+                onclick="hapusAcara('${box.id}')">
+
+                Hapus
+
+            </button>
+
+        </div>
+
+
+        ${input(
+            "Nama Acara",
+            "namaAcaraTambahan" + jumlahAcara,
+            "Contoh: Pengajian"
+        )}
+
+
+        <div class="row">
+
+            ${tanggal(
+                "Tanggal",
+                "tanggalAcaraTambahan" + jumlahAcara
+            )}
+
+            ${input(
+                "Waktu",
+                "waktuAcaraTambahan" + jumlahAcara,
+                "Contoh: 19.00 WIB"
+            )}
+
+        </div>
+
+
+        ${input(
+            "Lokasi",
+            "lokasiAcaraTambahan" + jumlahAcara,
+            "Nama tempat"
+        )}
+
+
+        ${textarea(
+            "Alamat",
+            "alamatAcaraTambahan" + jumlahAcara,
+            "Alamat lengkap"
+        )}
+
+
+        ${input(
+            "Link Google Maps",
+            "mapsAcaraTambahan" + jumlahAcara,
+            "https://maps.google.com/..."
+        )}
+
+    `;
+
+
+    container.appendChild(box);
+
+}
+
+
+
+/* ==========================================
+   HAPUS ACARA
+========================================== */
+
+function hapusAcara(id) {
+
+    const element =
+        document.getElementById(id);
+
+    if(element) {
+
+        element.remove();
+
+    }
+
+}
+
+
+
+/* ==========================================
+   TAMBAH REKENING
+========================================== */
+
+function tambahRekening() {
+
+    if(jumlahRekening >= 2) {
+
+        alert("Maksimal 2 rekening / e-wallet.");
+
+        return;
+
+    }
+
+
+    jumlahRekening++;
+
+
+    const container =
+        document.getElementById("rekeningContainer");
+
+
+    const box =
+        document.createElement("div");
+
+
+    box.className =
+        "rekening-box";
+
+
+    box.id =
+        "rekening-" + jumlahRekening;
+
+
+    box.innerHTML = `
+
+        <div class="acara-header">
+
+            <strong>
+                Rekening ${jumlahRekening}
+            </strong>
+
+            <button
+                type="button"
+                class="btn-hapus"
+                onclick="hapusRekening('${box.id}')">
+
+                Hapus
+
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Jenis
+            </label>
+
+            <select
+                id="jenisRekening${jumlahRekening}">
+
+                <option value="">
+                    -- Pilih Jenis --
+                </option>
+
+                <option value="Bank">
+                    Bank
+                </option>
+
+                <option value="E-Wallet">
+                    E-Wallet
+                </option>
+
+            </select>
+
+        </div>
+
+
+        ${input(
+            "Nama Bank / E-Wallet",
+            "namaRekening" + jumlahRekening,
+            "Contoh: BCA / DANA / OVO"
+        )}
+
+
+        ${input(
+            "Nomor Rekening / Nomor E-Wallet",
+            "nomorRekening" + jumlahRekening,
+            "Masukkan nomor"
+        )}
+
+
+        ${input(
+            "Atas Nama",
+            "atasNama" + jumlahRekening,
+            "Nama pemilik rekening"
+        )}
+
+    `;
+
+
+    container.appendChild(box);
+
+}
+
+
+
+/* ==========================================
+   HAPUS REKENING
+========================================== */
+
+function hapusRekening(id) {
+
+    const element =
+        document.getElementById(id);
+
+    if(element) {
+
+        element.remove();
+
+    }
+
+}
+
+
+
+/* ==========================================
+   PILIH MUSIK
+========================================== */
+
+function pilihMusik(type) {
+
+    document
+        .getElementById("musikJudul")
+        .style.display = "none";
+
+
+    document
+        .getElementById("musikYoutube")
+        .style.display = "none";
+
+
+    if(type === "judul") {
+
+        document
+            .getElementById("musikJudul")
+            .style.display = "block";
+
+    }
+
+
+    if(type === "youtube") {
+
+        document
+            .getElementById("musikYoutube")
+            .style.display = "block";
+
+    }
+
+}
+
+
+
+/* ==========================================
+   GET VALUE
 ========================================== */
 
 function getValue(id) {
 
-    const el = document.getElementById(id);
+    const el =
+        document.getElementById(id);
 
-    if (!el) {
+
+    if(!el) {
+
         return "-";
+
     }
 
+
     return el.value.trim() || "-";
+
 }
+
 
 
 /* ==========================================
@@ -1252,20 +1845,132 @@ function getValue(id) {
 
 function formatTanggal(id) {
 
-    const el = document.getElementById(id);
+    const el =
+        document.getElementById(id);
 
-    if (!el || !el.value) {
+
+    if(!el || !el.value) {
+
         return "-";
+
     }
 
-    const date = new Date(el.value);
 
-    return date.toLocaleDateString("id-ID", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric"
-    });
+    const date =
+        new Date(el.value);
+
+
+    return date.toLocaleDateString(
+        "id-ID",
+        {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        }
+    );
+
 }
+
+
+
+/* ==========================================
+   DATA ACARA TAMBAHAN
+========================================== */
+
+function ambilAcaraTambahan() {
+
+    let data = [];
+
+
+    for(let i = 1; i <= jumlahAcara; i++) {
+
+        const box =
+            document.getElementById("acara-" + i);
+
+
+        if(!box) {
+
+            continue;
+
+        }
+
+
+        data.push({
+
+            nama:
+                getValue("namaAcaraTambahan" + i),
+
+            tanggal:
+                formatTanggal("tanggalAcaraTambahan" + i),
+
+            waktu:
+                getValue("waktuAcaraTambahan" + i),
+
+            lokasi:
+                getValue("lokasiAcaraTambahan" + i),
+
+            alamat:
+                getValue("alamatAcaraTambahan" + i),
+
+            maps:
+                getValue("mapsAcaraTambahan" + i)
+
+        });
+
+    }
+
+
+    return data;
+
+}
+
+
+
+/* ==========================================
+   DATA REKENING
+========================================== */
+
+function ambilRekening() {
+
+    let data = [];
+
+
+    for(let i = 1; i <= jumlahRekening; i++) {
+
+        const box =
+            document.getElementById("rekening-" + i);
+
+
+        if(!box) {
+
+            continue;
+
+        }
+
+
+        data.push({
+
+            jenis:
+                getValue("jenisRekening" + i),
+
+            nama:
+                getValue("namaRekening" + i),
+
+            nomor:
+                getValue("nomorRekening" + i),
+
+            atasNama:
+                getValue("atasNama" + i)
+
+        });
+
+    }
+
+
+    return data;
+
+}
+
 
 
 /* ==========================================
@@ -1274,483 +1979,880 @@ function formatTanggal(id) {
 
 function kirimWhatsApp() {
 
-    if (!kategoriDipilih) {
 
-        alert("Silakan pilih kategori acara terlebih dahulu.");
+    if(!kategoriDipilih) {
+
+        alert(
+            "Silakan pilih kategori acara terlebih dahulu."
+        );
 
         return;
+
     }
 
 
-    if (
-        !document.getElementById("namaPemesan") ||
+    if(
         !getValue("namaPemesan") ||
         getValue("namaPemesan") === "-"
     ) {
 
-        alert("Silakan isi nama pemesan.");
+        alert(
+            "Silakan isi nama pemesan."
+        );
 
         return;
+
     }
 
 
-    if (
-        !document.getElementById("noWa") ||
+    if(
         !getValue("noWa") ||
         getValue("noWa") === "-"
     ) {
 
-        alert("Silakan isi nomor WhatsApp.");
+        alert(
+            "Silakan isi nomor WhatsApp."
+        );
 
         return;
+
     }
 
 
     let pesan = "";
 
 
-    pesan += "*FORM ORDER UNDANGAN WEBSITE*";
-    pesan += "\n";
-    pesan += "━━━━━━━━━━━━━━━━━━━━";
-    pesan += "\n\n";
+    pesan +=
+        "*FORM ORDER UNDANGAN WEBSITE*";
 
-
-    pesan += "*KATEGORI ACARA*";
-    pesan += "\n";
-    pesan += kategoriDipilih;
-    pesan += "\n\n";
-
-
-    pesan += "*DATA PEMESAN*";
-    pesan += "\n\n";
-
-    pesan += "Nama Pemesan : ";
-    pesan += getValue("namaPemesan");
     pesan += "\n";
 
-    pesan += "No. WhatsApp : ";
-    pesan += getValue("noWa");
+    pesan +=
+        "━━━━━━━━━━━━━━━━━━━━";
+
+    pesan += "\n\n";
+
+
+    pesan +=
+        "*KATEGORI ACARA*";
+
     pesan += "\n";
 
-    pesan += "Tema : ";
-    pesan += getValue("tema");
+    pesan +=
+        kategoriDipilih;
+
     pesan += "\n\n";
 
 
-    pesan += "*DATA ACARA*";
+    /* DATA PEMESAN */
+
+    pesan +=
+        "*DATA PEMESAN*";
+
     pesan += "\n\n";
 
 
-    /*
-    ----------------------------------
-    PERNIKAHAN
-    ----------------------------------
-    */
+    pesan +=
+        "Nama Pemesan : " +
+        getValue("namaPemesan");
 
-    if (kategoriDipilih === "Pernikahan") {
+    pesan += "\n";
 
-        pesan += "Nama Pria : ";
-        pesan += getValue("namaPria");
+
+    pesan +=
+        "No. WhatsApp : " +
+        getValue("noWa");
+
+    pesan += "\n";
+
+
+    pesan +=
+        "Tema : " +
+        getValue("tema");
+
+    pesan += "\n\n";
+
+
+    /* ======================================
+       DATA KHUSUS KATEGORI
+    ====================================== */
+
+    pesan +=
+        "*DATA ACARA UTAMA*";
+
+    pesan += "\n\n";
+
+
+    if(kategoriDipilih === "Pernikahan") {
+
+
+        pesan +=
+            "Nama Pria : " +
+            getValue("namaPria");
+
         pesan += "\n";
 
-        pesan += "Nama Wanita : ";
-        pesan += getValue("namaWanita");
+
+        pesan +=
+            "Nama Wanita : " +
+            getValue("namaWanita");
+
         pesan += "\n";
 
-        pesan += "Panggilan Pria : ";
-        pesan += getValue("panggilanPria");
+
+        pesan +=
+            "Panggilan Pria : " +
+            getValue("panggilanPria");
+
         pesan += "\n";
 
-        pesan += "Panggilan Wanita : ";
-        pesan += getValue("panggilanWanita");
+
+        pesan +=
+            "Panggilan Wanita : " +
+            getValue("panggilanWanita");
+
         pesan += "\n\n";
 
-        pesan += "Orang Tua Pria : ";
-        pesan += getValue("ortuPria");
+
+        pesan +=
+            "Orang Tua Pria : " +
+            getValue("ortuPria");
+
         pesan += "\n";
 
-        pesan += "Orang Tua Wanita : ";
-        pesan += getValue("ortuWanita");
+
+        pesan +=
+            "Orang Tua Wanita : " +
+            getValue("ortuWanita");
+
         pesan += "\n\n";
+
 
         pesan += "*AKAD*";
+
         pesan += "\n";
 
-        pesan += "Tanggal : ";
-        pesan += formatTanggal("tanggalAkad");
+        pesan +=
+            "Tanggal : " +
+            formatTanggal("tanggalAkad");
+
         pesan += "\n";
 
-        pesan += "Waktu : ";
-        pesan += getValue("waktuAkad");
+        pesan +=
+            "Waktu : " +
+            getValue("waktuAkad");
+
         pesan += "\n";
 
-        pesan += "Lokasi : ";
-        pesan += getValue("lokasiAkad");
+        pesan +=
+            "Lokasi : " +
+            getValue("lokasiAkad");
+
         pesan += "\n";
 
-        pesan += "Alamat : ";
-        pesan += getValue("alamatAkad");
+        pesan +=
+            "Alamat : " +
+            getValue("alamatAkad");
+
         pesan += "\n\n";
 
+
         pesan += "*RESEPSI*";
+
         pesan += "\n";
 
-        pesan += "Tanggal : ";
-        pesan += formatTanggal("tanggalResepsi");
+        pesan +=
+            "Tanggal : " +
+            formatTanggal("tanggalResepsi");
+
         pesan += "\n";
 
-        pesan += "Waktu : ";
-        pesan += getValue("waktuResepsi");
+        pesan +=
+            "Waktu : " +
+            getValue("waktuResepsi");
+
         pesan += "\n";
 
-        pesan += "Lokasi : ";
-        pesan += getValue("lokasiResepsi");
+        pesan +=
+            "Lokasi : " +
+            getValue("lokasiResepsi");
+
         pesan += "\n";
 
-        pesan += "Alamat : ";
-        pesan += getValue("alamatResepsi");
+        pesan +=
+            "Alamat : " +
+            getValue("alamatResepsi");
+
         pesan += "\n";
 
-        pesan += "Google Maps : ";
-        pesan += getValue("maps");
+        pesan +=
+            "Google Maps : " +
+            getValue("maps");
+
         pesan += "\n";
 
-        pesan += "Catatan : ";
-        pesan += getValue("catatan");
     }
 
 
-    /*
-    ----------------------------------
-    LAMARAN / TUNANGAN
-    ----------------------------------
-    */
-
-    else if (
+    else if(
         kategoriDipilih === "Lamaran" ||
         kategoriDipilih === "Tunangan"
     ) {
 
-        pesan += "Nama Pria : ";
-        pesan += getValue("namaPria");
+
+        pesan +=
+            "Nama Pria : " +
+            getValue("namaPria");
+
         pesan += "\n";
 
-        pesan += "Nama Wanita : ";
-        pesan += getValue("namaWanita");
+
+        pesan +=
+            "Nama Wanita : " +
+            getValue("namaWanita");
+
         pesan += "\n";
 
-        pesan += "Keluarga : ";
-        pesan += getValue("keluarga");
-        pesan += "\n\n";
 
-        pesan += "Tanggal : ";
-        pesan += formatTanggal("tanggalAcara");
+        pesan +=
+            "Keluarga : " +
+            getValue("keluarga");
+
         pesan += "\n";
 
-        pesan += "Waktu : ";
-        pesan += getValue("waktuAcara");
+
+        pesan +=
+            "Tanggal : " +
+            formatTanggal("tanggalAcara");
+
         pesan += "\n";
 
-        pesan += "Tempat : ";
-        pesan += getValue("tempat");
+
+        pesan +=
+            "Waktu : " +
+            getValue("waktuAcara");
+
         pesan += "\n";
 
-        pesan += "Alamat : ";
-        pesan += getValue("alamat");
+
+        pesan +=
+            "Tempat : " +
+            getValue("tempat");
+
         pesan += "\n";
 
-        pesan += "Google Maps : ";
-        pesan += getValue("maps");
+
+        pesan +=
+            "Alamat : " +
+            getValue("alamat");
+
         pesan += "\n";
 
-        pesan += "Catatan : ";
-        pesan += getValue("catatan");
+
+        pesan +=
+            "Google Maps : " +
+            getValue("maps");
+
+        pesan += "\n";
+
     }
 
 
-    /*
-    ----------------------------------
-    KHITANAN / AQIQAH
-    ----------------------------------
-    */
-
-    else if (
+    else if(
         kategoriDipilih === "Khitanan" ||
         kategoriDipilih === "Aqiqah"
     ) {
 
-        pesan += "Nama Anak : ";
-        pesan += getValue("namaAnak");
+
+        pesan +=
+            "Nama Anak : " +
+            getValue("namaAnak");
+
         pesan += "\n";
 
-        pesan += "Nama Panggilan : ";
-        pesan += getValue("panggilanAnak");
+
+        pesan +=
+            "Nama Panggilan : " +
+            getValue("panggilanAnak");
+
         pesan += "\n";
 
-        pesan += "Nama Orang Tua : ";
-        pesan += getValue("namaOrtu");
-        pesan += "\n";
 
-        if (kategoriDipilih === "Aqiqah") {
+        if(kategoriDipilih === "Aqiqah") {
 
-            pesan += "Jenis Kelamin : ";
-            pesan += getValue("jenisKelamin");
+            pesan +=
+                "Jenis Kelamin : " +
+                getValue("jenisKelamin");
+
             pesan += "\n";
 
         }
 
+
+        pesan +=
+            "Nama Orang Tua : " +
+            getValue("namaOrtu");
+
         pesan += "\n";
 
-        pesan += "Tanggal : ";
-        pesan += formatTanggal("tanggalAcara");
+
+        pesan +=
+            "Tanggal : " +
+            formatTanggal("tanggalAcara");
+
         pesan += "\n";
 
-        pesan += "Waktu : ";
-        pesan += getValue("waktuAcara");
+
+        pesan +=
+            "Waktu : " +
+            getValue("waktuAcara");
+
         pesan += "\n";
 
-        pesan += "Tempat : ";
-        pesan += getValue("tempat");
+
+        pesan +=
+            "Tempat : " +
+            getValue("tempat");
+
         pesan += "\n";
 
-        pesan += "Alamat : ";
-        pesan += getValue("alamat");
+
+        pesan +=
+            "Alamat : " +
+            getValue("alamat");
+
         pesan += "\n";
 
-        pesan += "Google Maps : ";
-        pesan += getValue("maps");
+
+        pesan +=
+            "Google Maps : " +
+            getValue("maps");
+
         pesan += "\n";
 
-        pesan += "Catatan : ";
-        pesan += getValue("catatan");
     }
 
 
-    /*
-    ----------------------------------
-    ULANG TAHUN
-    ----------------------------------
-    */
+    else if(kategoriDipilih === "Ulang Tahun") {
 
-    else if (kategoriDipilih === "Ulang Tahun") {
 
-        pesan += "Nama : ";
-        pesan += getValue("nama");
+        pesan +=
+            "Nama : " +
+            getValue("nama");
+
         pesan += "\n";
 
-        pesan += "Usia : ";
-        pesan += getValue("usia");
-        pesan += "\n\n";
 
-        pesan += "Tanggal : ";
-        pesan += formatTanggal("tanggalAcara");
+        pesan +=
+            "Usia : " +
+            getValue("usia");
+
         pesan += "\n";
 
-        pesan += "Waktu : ";
-        pesan += getValue("waktuAcara");
+
+        pesan +=
+            "Tanggal : " +
+            formatTanggal("tanggalAcara");
+
         pesan += "\n";
 
-        pesan += "Tempat : ";
-        pesan += getValue("tempat");
+
+        pesan +=
+            "Waktu : " +
+            getValue("waktuAcara");
+
         pesan += "\n";
 
-        pesan += "Alamat : ";
-        pesan += getValue("alamat");
+
+        pesan +=
+            "Tempat : " +
+            getValue("tempat");
+
         pesan += "\n";
 
-        pesan += "Google Maps : ";
-        pesan += getValue("maps");
+
+        pesan +=
+            "Alamat : " +
+            getValue("alamat");
+
         pesan += "\n";
 
-        pesan += "Catatan : ";
-        pesan += getValue("catatan");
+
+        pesan +=
+            "Google Maps : " +
+            getValue("maps");
+
+        pesan += "\n";
+
     }
 
 
-    /*
-    ----------------------------------
-    PARTY
-    ----------------------------------
-    */
+    else if(kategoriDipilih === "Party & Dinner") {
 
-    else if (kategoriDipilih === "Party & Dinner") {
 
-        pesan += "Nama Acara : ";
-        pesan += getValue("namaAcara");
+        pesan +=
+            "Nama Acara : " +
+            getValue("namaAcara");
+
         pesan += "\n";
 
-        pesan += "Host : ";
-        pesan += getValue("host");
+
+        pesan +=
+            "Host : " +
+            getValue("host");
+
         pesan += "\n";
 
-        pesan += "Tanggal : ";
-        pesan += formatTanggal("tanggalAcara");
+
+        pesan +=
+            "Tanggal : " +
+            formatTanggal("tanggalAcara");
+
         pesan += "\n";
 
-        pesan += "Waktu : ";
-        pesan += getValue("waktuAcara");
+
+        pesan +=
+            "Waktu : " +
+            getValue("waktuAcara");
+
         pesan += "\n";
 
-        pesan += "Tempat : ";
-        pesan += getValue("tempat");
+
+        pesan +=
+            "Tempat : " +
+            getValue("tempat");
+
         pesan += "\n";
 
-        pesan += "Alamat : ";
-        pesan += getValue("alamat");
+
+        pesan +=
+            "Alamat : " +
+            getValue("alamat");
+
         pesan += "\n";
 
-        pesan += "Google Maps : ";
-        pesan += getValue("maps");
+
+        pesan +=
+            "Google Maps : " +
+            getValue("maps");
+
         pesan += "\n";
 
-        pesan += "Catatan : ";
-        pesan += getValue("catatan");
     }
 
 
-    /*
-    ----------------------------------
-    GRAND OPENING
-    ----------------------------------
-    */
+    else if(kategoriDipilih === "Grand Opening") {
 
-    else if (kategoriDipilih === "Grand Opening") {
 
-        pesan += "Nama Usaha : ";
-        pesan += getValue("namaUsaha");
+        pesan +=
+            "Nama Usaha : " +
+            getValue("namaUsaha");
+
         pesan += "\n";
 
-        pesan += "Jenis Usaha : ";
-        pesan += getValue("jenisUsaha");
+
+        pesan +=
+            "Jenis Usaha : " +
+            getValue("jenisUsaha");
+
         pesan += "\n";
 
-        pesan += "Nama Pemilik : ";
-        pesan += getValue("namaPemilik");
-        pesan += "\n\n";
 
-        pesan += "Tanggal : ";
-        pesan += formatTanggal("tanggalAcara");
+        pesan +=
+            "Nama Pemilik : " +
+            getValue("namaPemilik");
+
         pesan += "\n";
 
-        pesan += "Waktu : ";
-        pesan += getValue("waktuAcara");
+
+        pesan +=
+            "Tanggal : " +
+            formatTanggal("tanggalAcara");
+
         pesan += "\n";
 
-        pesan += "Lokasi : ";
-        pesan += getValue("tempat");
+
+        pesan +=
+            "Waktu : " +
+            getValue("waktuAcara");
+
         pesan += "\n";
 
-        pesan += "Alamat : ";
-        pesan += getValue("alamat");
+
+        pesan +=
+            "Lokasi : " +
+            getValue("tempat");
+
         pesan += "\n";
 
-        pesan += "Google Maps : ";
-        pesan += getValue("maps");
+
+        pesan +=
+            "Alamat : " +
+            getValue("alamat");
+
         pesan += "\n";
 
-        pesan += "Catatan : ";
-        pesan += getValue("catatan");
+
+        pesan +=
+            "Google Maps : " +
+            getValue("maps");
+
+        pesan += "\n";
+
     }
 
 
-    /*
-    ----------------------------------
-    PURNABAKTI
-    ----------------------------------
-    */
+    else if(kategoriDipilih === "Purnabakti") {
 
-    else if (kategoriDipilih === "Purnabakti") {
 
-        pesan += "Nama : ";
-        pesan += getValue("nama");
+        pesan +=
+            "Nama : " +
+            getValue("nama");
+
         pesan += "\n";
 
-        pesan += "Jabatan : ";
-        pesan += getValue("jabatan");
+
+        pesan +=
+            "Jabatan : " +
+            getValue("jabatan");
+
         pesan += "\n";
 
-        pesan += "Instansi / Sekolah : ";
-        pesan += getValue("instansi");
-        pesan += "\n\n";
 
-        pesan += "Tanggal : ";
-        pesan += formatTanggal("tanggalAcara");
+        pesan +=
+            "Instansi : " +
+            getValue("instansi");
+
         pesan += "\n";
 
-        pesan += "Waktu : ";
-        pesan += getValue("waktuAcara");
+
+        pesan +=
+            "Tanggal : " +
+            formatTanggal("tanggalAcara");
+
         pesan += "\n";
 
-        pesan += "Tempat : ";
-        pesan += getValue("tempat");
+
+        pesan +=
+            "Waktu : " +
+            getValue("waktuAcara");
+
         pesan += "\n";
 
-        pesan += "Alamat : ";
-        pesan += getValue("alamat");
+
+        pesan +=
+            "Tempat : " +
+            getValue("tempat");
+
         pesan += "\n";
 
-        pesan += "Google Maps : ";
-        pesan += getValue("maps");
+
+        pesan +=
+            "Alamat : " +
+            getValue("alamat");
+
         pesan += "\n";
 
-        pesan += "Catatan : ";
-        pesan += getValue("catatan");
+
+        pesan +=
+            "Google Maps : " +
+            getValue("maps");
+
+        pesan += "\n";
+
     }
 
-
-    /*
-    ----------------------------------
-    LAINNYA
-    ----------------------------------
-    */
 
     else {
 
-        pesan += "Nama Acara : ";
-        pesan += getValue("namaAcara");
+
+        pesan +=
+            "Nama Acara : " +
+            getValue("namaAcara");
+
         pesan += "\n";
 
-        pesan += "Penyelenggara : ";
-        pesan += getValue("penyelenggara");
+
+        pesan +=
+            "Penyelenggara : " +
+            getValue("penyelenggara");
+
         pesan += "\n";
 
-        pesan += "Tanggal : ";
-        pesan += formatTanggal("tanggalAcara");
+
+        pesan +=
+            "Tanggal : " +
+            formatTanggal("tanggalAcara");
+
         pesan += "\n";
 
-        pesan += "Waktu : ";
-        pesan += getValue("waktuAcara");
+
+        pesan +=
+            "Waktu : " +
+            getValue("waktuAcara");
+
         pesan += "\n";
 
-        pesan += "Tempat : ";
-        pesan += getValue("tempat");
+
+        pesan +=
+            "Tempat : " +
+            getValue("tempat");
+
         pesan += "\n";
 
-        pesan += "Alamat : ";
-        pesan += getValue("alamat");
+
+        pesan +=
+            "Alamat : " +
+            getValue("alamat");
+
         pesan += "\n";
 
-        pesan += "Google Maps : ";
-        pesan += getValue("maps");
+
+        pesan +=
+            "Google Maps : " +
+            getValue("maps");
+
         pesan += "\n";
 
-        pesan += "Catatan : ";
-        pesan += getValue("catatan");
     }
 
 
+
+    /* ======================================
+       ACARA TAMBAHAN
+    ====================================== */
+
+    const acaraTambahan =
+        ambilAcaraTambahan();
+
+
+    if(acaraTambahan.length > 0) {
+
+        pesan += "\n\n";
+
+        pesan +=
+            "*ACARA TAMBAHAN*";
+
+        pesan += "\n";
+
+
+        acaraTambahan.forEach(
+            (acara,index) => {
+
+                pesan += "\n";
+
+                pesan +=
+                    `${index + 1}. ${acara.nama}`;
+
+                pesan += "\n";
+
+                pesan +=
+                    "Tanggal : " +
+                    acara.tanggal;
+
+                pesan += "\n";
+
+                pesan +=
+                    "Waktu : " +
+                    acara.waktu;
+
+                pesan += "\n";
+
+                pesan +=
+                    "Lokasi : " +
+                    acara.lokasi;
+
+                pesan += "\n";
+
+                pesan +=
+                    "Alamat : " +
+                    acara.alamat;
+
+                pesan += "\n";
+
+                pesan +=
+                    "Maps : " +
+                    acara.maps;
+
+                pesan += "\n";
+
+            }
+        );
+
+    }
+
+
+
+    /* ======================================
+       REKENING
+    ====================================== */
+
+    const rekening =
+        ambilRekening();
+
+
+    if(rekening.length > 0) {
+
+        pesan += "\n\n";
+
+        pesan +=
+            "*REKENING / E-WALLET*";
+
+        pesan += "\n";
+
+
+        rekening.forEach(
+            (rek,index) => {
+
+                pesan += "\n";
+
+                pesan +=
+                    `${index + 1}. ${rek.jenis}`;
+
+                pesan += "\n";
+
+                pesan +=
+                    "Nama : " +
+                    rek.nama;
+
+                pesan += "\n";
+
+                pesan +=
+                    "Nomor : " +
+                    rek.nomor;
+
+                pesan += "\n";
+
+                pesan +=
+                    "Atas Nama : " +
+                    rek.atasNama;
+
+                pesan += "\n";
+
+            }
+        );
+
+    }
+
+
+
+    /* ======================================
+       KADO
+    ====================================== */
+
     pesan += "\n\n";
-    pesan += "━━━━━━━━━━━━━━━━━━━━";
+
+    pesan +=
+        "*KIRIM KADO*";
+
     pesan += "\n";
-    pesan += "Mohon diproses sesuai data di atas.";
+
+    pesan +=
+        getValue("alamatKado");
 
 
-    /* ENCODE */
 
-    const encoded = encodeURIComponent(pesan);
+    /* ======================================
+       MUSIK
+    ====================================== */
+
+    pesan += "\n\n";
+
+    pesan +=
+        "*MUSIK UNDANGAN*";
+
+    pesan += "\n";
 
 
-    /* BUKA WHATSAPP */
+    const musik =
+        document.querySelector(
+            'input[name="musik"]:checked'
+        );
+
+
+    if(!musik) {
+
+        pesan +=
+            "Belum dipilih";
+
+    }
+
+
+    else if(
+        musik.value === "Judul Lagu"
+    ) {
+
+        pesan +=
+            "Jenis : Judul Lagu";
+
+        pesan += "\n";
+
+        pesan +=
+            "Judul : " +
+            getValue("judulLagu");
+
+    }
+
+
+    else if(
+        musik.value === "Link YouTube"
+    ) {
+
+        pesan +=
+            "Jenis : Link YouTube";
+
+        pesan += "\n";
+
+        pesan +=
+            "Link : " +
+            getValue("linkYoutube");
+
+    }
+
+
+    else {
+
+        pesan +=
+            "Tidak menggunakan musik";
+
+    }
+
+
+
+    /* ======================================
+       CATATAN
+    ====================================== */
+
+    pesan += "\n\n";
+
+    pesan +=
+        "*CATATAN TAMBAHAN*";
+
+    pesan += "\n";
+
+    pesan +=
+        getValue("catatan");
+
+
+    pesan += "\n\n";
+
+    pesan +=
+        "━━━━━━━━━━━━━━━━━━━━";
+
+    pesan += "\n";
+
+    pesan +=
+        "Mohon diproses sesuai data di atas.";
+
+
+
+    /* ======================================
+       WHATSAPP
+    ====================================== */
+
+    const encoded =
+        encodeURIComponent(pesan);
+
 
     const url =
         "https://wa.me/" +
@@ -1759,7 +2861,10 @@ function kirimWhatsApp() {
         encoded;
 
 
-    window.open(url, "_blank");
+    window.open(
+        url,
+        "_blank"
+    );
 
 }
 
