@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Form Order Undangan Website</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            color: #333;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            color: #222;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* CARD */
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+        }
+
+        .card-title {
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 18px;
+            color: #222;
+        }
+
+        /* KATEGORI */
+        .kategori {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .kategori-item {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            background: #fff;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+
+        .kategori-item:hover {
+            border-color: #111;
+            transform: translateY(-2px);
+        }
+
+        .kategori-item.active {
+            background: #222;
+            color: #fff;
+            border-color: #222;
+        }
+
+        .kategori-icon {
+            display: block;
+            font-size: 25px;
+            margin-bottom: 7px;
+        }
+
+        /* FORM */
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 7px;
+            color: #333;
+        }
+
+        .required {
+            color: red;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            font-family: inherit;
+            transition: 0.2s;
+            background: #fff;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #222;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info {
+            background: #f5f5f5;
+            padding: 13px 15px;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* BUTTON */
+        .btn-wa {
+            width: 100%;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            background: #25D366;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-wa:hover {
+            background: #1ebe5d;
+            transform: translateY(-1px);
+        }
+
+        .selected-category {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .selected-category strong {
+            color: #222;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 650px) {
+
+            body {
+                padding: 20px 10px;
+            }
+
+            .card {
+                padding: 18px;
+                border-radius: 15px;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+
+            .kategori {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Form Order Undangan Website</h1>
+        <p>Silakan pilih kategori acara dan lengkapi data undangan Anda.</p>
+    </div>
+
+
+    <!-- KATEGORI -->
+    <div class="card">
+
+        <div class="card-title">
+            1. Pilih Kategori Acara
+        </div>
+
+        <div class="kategori">
+
+            <div class="kategori-item" onclick="pilihKategori('Pernikahan', this)">
+                <span class="kategori-icon">💍</span>
+                Pernikahan
+            </div>
+
+            <div class="kategori-item" onclick="pilihKategori('Lamaran', this)">
+                <span class="kategori-icon">💐</span>
+                Lamaran
+            </div>
+
+            <div class="kategori-item" onclick="pilihKategori('Tunangan', this)">
+                <span class="kategori-icon">💎</span>
+                Tunangan
+            </div>
+
+            <div class="kategori-item" onclick="pilihKategori('Khitanan', this)">
+                <span class="kategori-icon">✨</span>
+                Khitanan
+            </div>
+
+            <div class="kategori-item" onclick="pilihKategori('Aqiqah', this)">
+                <span class="kategori-icon">👶</span>
+                Aqiqah
+            </div>
+
+            <div class="kategori-item" onclick="pilihKategori('Ulang Tahun', this)">
+                <span class="kategori-icon">🎂</span>
+                Ulang Tahun
+            </div>
+
+            <div class="kategori-item" onclick="pilihKategori('Party & Dinner', this)">
+                <span class="kategori-icon">🥂</span>
+                Party & Dinner
+            </div>
+
+            <div class="kategori-item" onclick="pilihKategori('Grand Opening', this)">
+                <span class="kategori-icon">🎉</span>
+                Grand Opening
+            </div>
+
+            <div class="kategori-item" onclick="pilihKategori('Purnabakti', this)">
+                <span class="kategori-icon">🏆</span>
+                Purnabakti
+            </div>
+
+            <div class="kategori-item" onclick="pilihKategori('Lainnya', this)">
+                <span class="kategori-icon">📋</span>
+                Lainnya
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FORM DATA -->
+    <div class="card">
+
+        <div class="card-title">
+            2. Isi Data Pesanan
+        </div>
+
+        <div class="selected-category">
+            Kategori acara:
+            <strong id="kategoriTerpilih">Belum dipilih</strong>
+        </div>
+
+        <div class="info">
+            Silakan isi data sesuai kebutuhan undangan. Data yang sudah diisi
+            nantinya akan otomatis dikirim ke WhatsApp admin.
+        </div>
+
+
+        <!-- TEMA -->
+        <div class="form-group">
+            <label>
+                Nama / Link Tema Undangan
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="tema"
+                placeholder="Contoh: Art Blue Java / link tema"
+            >
+        </div>
+
+
+        <!-- NAMA PEMESAN -->
+        <div class="form-group">
+            <label>
+                Nama Pemesan
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="namaPemesan"
+                placeholder="Nama lengkap pemesan"
+            >
+        </div>
+
+
+        <!-- NOMOR WA -->
+        <div class="form-group">
+            <label>
+                Nomor WhatsApp
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="tel"
+                id="noWa"
+                placeholder="Contoh: 08123456789"
+            >
+        </div>
+
+
+        <!-- NAMA PENGANTIN -->
+        <div class="row">
+
+            <div class="form-group">
+                <label>
+                    Nama Pria
+                </label>
+
+                <input
+                    type="text"
+                    id="namaPria"
+                    placeholder="Nama lengkap pria"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Nama Wanita
+                </label>
+
+                <input
+                    type="text"
+                    id="namaWanita"
+                    placeholder="Nama lengkap wanita"
+                >
+            </div>
+
+        </div>
+
+
+        <!-- NAMA PANGGILAN -->
+        <div class="row">
+
+            <div class="form-group">
+                <label>Nama Panggilan Pria</label>
+
+                <input
+                    type="text"
+                    id="panggilanPria"
+                    placeholder="Contoh: Andi"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Nama Panggilan Wanita</label>
+
+                <input
+                    type="text"
+                    id="panggilanWanita"
+                    placeholder="Contoh: Sinta"
+                >
+            </div>
+
+        </div>
+
+
+        <!-- ORANG TUA -->
+        <div class="row">
+
+            <div class="form-group">
+                <label>Nama Orang Tua Pria</label>
+
+                <textarea
+                    id="ortuPria"
+                    placeholder="Contoh:&#10;Bapak ...&#10;Ibu ..."
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Nama Orang Tua Wanita</label>
+
+                <textarea
+                    id="ortuWanita"
+                    placeholder="Contoh:&#10;Bapak ...&#10;Ibu ..."
+                ></textarea>
+            </div>
+
+        </div>
+
+
+        <!-- TANGGAL -->
+        <div class="row">
+
+            <div class="form-group">
+                <label>Tanggal Acara</label>
+
+                <input
+                    type="date"
+                    id="tanggal"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Waktu Acara</label>
+
+                <input
+                    type="text"
+                    id="waktu"
+                    placeholder="Contoh: 09.00 WIB - selesai"
+                >
+            </div>
+
+        </div>
+
+
+        <!-- LOKASI -->
+        <div class="form-group">
+
+            <label>Nama Tempat / Lokasi</label>
+
+            <input
+                type="text"
+                id="lokasi"
+                placeholder="Contoh: Gedung Serbaguna"
+            >
+
+        </div>
+
+
+        <!-- ALAMAT -->
+        <div class="form-group">
+
+            <label>Alamat Acara</label>
+
+            <textarea
+                id="alamat"
+                placeholder="Masukkan alamat lengkap acara"
+            ></textarea>
+
+        </div>
+
+
+        <!-- LINK MAPS -->
+        <div class="form-group">
+
+            <label>Link Google Maps</label>
+
+            <input
+                type="url"
+                id="maps"
+                placeholder="https://maps.google.com/..."
+            >
+
+        </div>
+
+
+        <!-- URUTAN NAMA -->
+        <div class="form-group">
+
+            <label>Penulisan Nama Pengantin</label>
+
+            <select id="urutanNama">
+
+                <option value="">-- Pilih --</option>
+
+                <option value="Pria & Wanita">
+                    Pria & Wanita
+                </option>
+
+                <option value="Wanita & Pria">
+                    Wanita & Pria
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- AGAMA -->
+        <div class="form-group">
+
+            <label>Agama</label>
+
+            <select id="agama">
+
+                <option value="">-- Pilih Agama --</option>
+
+                <option value="Islam">Islam</option>
+                <option value="Kristen">Kristen</option>
+                <option value="Katolik">Katolik</option>
+                <option value="Hindu">Hindu</option>
+                <option value="Buddha">Buddha</option>
+                <option value="Konghucu">Konghucu</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- CATATAN -->
+        <div class="form-group">
+
+            <label>Catatan Tambahan</label>
+
+            <textarea
+                id="catatan"
+                placeholder="Tulis permintaan atau catatan tambahan..."
+            ></textarea>
+
+        </div>
+
+    </div>
+
+
+    <!-- KIRIM -->
+    <div class="card">
+
+        <div class="card-title">
+            3. Kirim Pesanan
+        </div>
+
+        <div class="info">
+            Pastikan semua data sudah benar sebelum mengirim.
+            Setelah tombol ditekan, WhatsApp akan terbuka dan data pesanan
+            otomatis masuk ke chat admin.
+        </div>
+
+        <button
+            class="btn-wa"
+            onclick="kirimWhatsApp()"
+        >
+            💬 Kirim Pesanan via WhatsApp
+        </button>
+
+    </div>
+
+
+    <div class="footer">
+        © 2026 MSA Invitation
+    </div>
+
+</div>
+
+
+<script>
+
+    /*
+    ==========================================
+    NOMOR WHATSAPP ADMIN
+    ==========================================
+
+    GANTI NOMOR DI BAWAH DENGAN NOMOR ADMIN.
+
+    Format:
+    628xxxxxxxxxx
+
+    Jangan menggunakan:
+    08xxxxxxxxxx
+    */
+
+    const nomorAdmin = "6281234567890";
+
+
+    /*
+    ==========================================
+    PILIH KATEGORI
+    ==========================================
+    */
+
+    let kategoriDipilih = "";
+
+
+    function pilihKategori(kategori, element) {
+
+        kategoriDipilih = kategori;
+
+        // Hapus active dari semua kategori
+        document.querySelectorAll(".kategori-item")
+            .forEach(function(item) {
+                item.classList.remove("active");
+            });
+
+        // Tambahkan active
+        element.classList.add("active");
+
+        // Tampilkan kategori
+        document.getElementById("kategoriTerpilih").textContent = kategori;
+
+        // Scroll ke form
+        setTimeout(function() {
+
+            document.querySelectorAll(".card")[1]
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+        }, 150);
+
+    }
+
+
+    /*
+    ==========================================
+    FORMAT TANGGAL
+    ==========================================
+    */
+
+    function formatTanggal(tanggal) {
+
+        if (!tanggal) {
+            return "-";
+        }
+
+        const date = new Date(tanggal);
+
+        const options = {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        };
+
+        return date.toLocaleDateString(
+            "id-ID",
+            options
+        );
+
+    }
+
+
+    /*
+    ==========================================
+    MENGAMBIL VALUE
+    ==========================================
+    */
+
+    function value(id) {
+
+        const element = document.getElementById(id);
+
+        if (!element) {
+            return "-";
+        }
+
+        return element.value.trim() || "-";
+
+    }
+
+
+    /*
+    ==========================================
+    KIRIM WHATSAPP
+    ==========================================
+    */
+
+    function kirimWhatsApp() {
+
+        // Validasi kategori
+        if (!kategoriDipilih) {
+
+            alert("Silakan pilih kategori acara terlebih dahulu.");
+
+            return;
+
+        }
+
+
+        // Validasi nama pemesan
+        if (!value("namaPemesan") || value("namaPemesan") === "-") {
+
+            alert("Silakan isi nama pemesan.");
+
+            document.getElementById("namaPemesan").focus();
+
+            return;
+
+        }
+
+
+        // Validasi nomor WA
+        if (!value("noWa") || value("noWa") === "-") {
+
+            alert("Silakan isi nomor WhatsApp.");
+
+            document.getElementById("noWa").focus();
+
+            return;
+
+        }
+
+
+        /*
+        ======================================
+        BUAT PESAN
+        ======================================
+        */
+
+        let pesan = "";
+
+        pesan += "*FORM ORDER UNDANGAN WEBSITE*";
+        pesan += "\n";
+        pesan += "━━━━━━━━━━━━━━━━━━━━";
+        pesan += "\n\n";
+
+
+        pesan += "*DATA PESANAN*";
+        pesan += "\n\n";
+
+        pesan += "Kategori Acara : ";
+        pesan += kategoriDipilih;
+        pesan += "\n";
+
+        pesan += "Nama / Link Tema : ";
+        pesan += value("tema");
+        pesan += "\n";
+
+        pesan += "Nama Pemesan : ";
+        pesan += value("namaPemesan");
+        pesan += "\n";
+
+        pesan += "No. WhatsApp : ";
+        pesan += value("noWa");
+        pesan += "\n\n";
+
+
+        pesan += "*DATA UNDANGAN*";
+        pesan += "\n\n";
+
+        pesan += "Nama Pria : ";
+        pesan += value("namaPria");
+        pesan += "\n";
+
+        pesan += "Nama Wanita : ";
+        pesan += value("namaWanita");
+        pesan += "\n";
+
+        pesan += "Panggilan Pria : ";
+        pesan += value("panggilanPria");
+        pesan += "\n";
+
+        pesan += "Panggilan Wanita : ";
+        pesan += value("panggilanWanita");
+        pesan += "\n\n";
+
+
+        pesan += "*DATA ORANG TUA*";
+        pesan += "\n\n";
+
+        pesan += "Orang Tua Pria : ";
+        pesan += "\n";
+        pesan += value("ortuPria");
+        pesan += "\n\n";
+
+        pesan += "Orang Tua Wanita : ";
+        pesan += "\n";
+        pesan += value("ortuWanita");
+        pesan += "\n\n";
+
+
+        pesan += "*DETAIL ACARA*";
+        pesan += "\n\n";
+
+        pesan += "Tanggal : ";
+        pesan += formatTanggal(value("tanggal"));
+        pesan += "\n";
+
+        pesan += "Waktu : ";
+        pesan += value("waktu");
+        pesan += "\n";
+
+        pesan += "Tempat : ";
+        pesan += value("lokasi");
+        pesan += "\n";
+
+        pesan += "Alamat : ";
+        pesan += "\n";
+        pesan += value("alamat");
+        pesan += "\n\n";
+
+        pesan += "Google Maps : ";
+        pesan += value("maps");
+        pesan += "\n\n";
+
+
+        pesan += "*DATA TAMBAHAN*";
+        pesan += "\n\n";
+
+        pesan += "Urutan Nama : ";
+        pesan += value("urutanNama");
+        pesan += "\n";
+
+        pesan += "Agama : ";
+        pesan += value("agama");
+        pesan += "\n";
+
+        pesan += "Catatan : ";
+        pesan += "\n";
+        pesan += value("catatan");
+        pesan += "\n\n";
+
+
+        pesan += "━━━━━━━━━━━━━━━━━━━━";
+        pesan += "\n";
+        pesan += "Mohon diproses sesuai data di atas.";
+        
+
+        /*
+        ======================================
+        ENCODE PESAN
+        ======================================
+        */
+
+        const pesanEncoded = encodeURIComponent(pesan);
+
+
+        /*
+        ======================================
+        BUKA WHATSAPP
+        ======================================
+        */
+
+        const url =
+            "https://wa.me/" +
+            nomorAdmin +
+            "?text=" +
+            pesanEncoded;
+
+
+        window.open(url, "_blank");
+
+    }
+
+</script>
+
+</body>
+</html>
