@@ -3922,7 +3922,119 @@ function kirimWhatsApp() {
 
     }
 
+/* =========================================
+   PEMBAYARAN
+========================================= */
 
+const metodePembayaran =
+    getValue("metodePembayaran");
+
+if (
+    metodePembayaran !== "-"
+) {
+
+    pesan +=
+        "\n*PEMBAYARAN*\n";
+
+    pesan +=
+        "Metode : " +
+        metodePembayaran +
+        "\n";
+
+
+    let pembayaranNama = "-";
+
+
+    if (
+        metodePembayaran === "Bank"
+    ) {
+
+        pembayaranNama =
+            getValue(
+                "bankPembayaran"
+            );
+
+    }
+
+    else if (
+        metodePembayaran === "E-Wallet"
+    ) {
+
+        pembayaranNama =
+            getValue(
+                "ewalletPembayaran"
+            );
+
+    }
+
+    else if (
+        metodePembayaran === "Shopee"
+    ) {
+
+        pembayaranNama =
+            "Shopee";
+
+    }
+
+
+    pesan +=
+        "Pembayaran : " +
+        pembayaranNama +
+        "\n";
+
+
+    pesan +=
+        "Nominal : " +
+        getValue(
+            "nominalPembayaran"
+        ) +
+        "\n";
+
+
+    pesan +=
+        "Nama Pengirim : " +
+        getValue(
+            "namaPengirimPembayaran"
+        ) +
+        "\n";
+
+
+    const sudahBayar =
+        document.getElementById(
+            "sudahBayar"
+        );
+
+
+    pesan +=
+        "Status : " +
+        (
+            sudahBayar?.checked
+            ?
+            "Sudah melakukan pembayaran"
+            :
+            "Belum dikonfirmasi"
+        ) +
+        "\n";
+
+
+    const bukti =
+        document.getElementById(
+            "buktiPembayaran"
+        );
+
+
+    pesan +=
+        "Bukti Transfer : " +
+        (
+            bukti?.files?.length
+            ?
+            "Sudah dipilih di form"
+            :
+            "Belum diupload"
+        ) +
+        "\n";
+
+}
     /* =========================================
        KADO
     ========================================= */
