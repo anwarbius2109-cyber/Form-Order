@@ -3936,6 +3936,7 @@ if (
     pesan +=
         "\n*PEMBAYARAN*\n";
 
+
     pesan +=
         "Metode : " +
         metodePembayaran +
@@ -3983,20 +3984,40 @@ if (
         "\n";
 
 
-    pesan +=
-        "Nominal : " +
+    const nominal =
         getValue(
             "nominalPembayaran"
-        ) +
-        "\n";
+        );
 
 
-    pesan +=
-        "Nama Pengirim : " +
+    if (
+        nominal !== "-"
+    ) {
+
+        pesan +=
+            "Nominal : Rp " +
+            nominal +
+            "\n";
+
+    }
+
+
+    const namaPengirim =
         getValue(
             "namaPengirimPembayaran"
-        ) +
-        "\n";
+        );
+
+
+    if (
+        namaPengirim !== "-"
+    ) {
+
+        pesan +=
+            "Nama Pengirim : " +
+            namaPengirim +
+            "\n";
+
+    }
 
 
     const sudahBayar =
@@ -4012,7 +4033,7 @@ if (
             ?
             "Sudah melakukan pembayaran"
             :
-            "Belum dikonfirmasi"
+            "Belum melakukan pembayaran"
         ) +
         "\n";
 
@@ -4024,15 +4045,27 @@ if (
 
 
     pesan +=
-        "Bukti Transfer : " +
-        (
-            bukti?.files?.length
-            ?
-            "Sudah dipilih di form"
-            :
-            "Belum diupload"
-        ) +
-        "\n";
+        "\n*BUKTI PEMBAYARAN*\n";
+
+
+    if (
+        bukti?.files?.length
+    ) {
+
+        pesan +=
+            "Bukti sudah dipilih.\n";
+
+        pesan +=
+            "Silakan kirim foto bukti pembayaran di chat WhatsApp ini.\n";
+
+    }
+
+    else {
+
+        pesan +=
+            "Belum ada bukti pembayaran.\n";
+
+    }
 
 }
     /* =========================================
