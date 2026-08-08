@@ -800,56 +800,128 @@ function buatForm(kategori) {
 
         html += `
 
-            <div class="section-title">
-                Data Pengantin
-            </div>
+           <div class="section-title">
+    Data Mempelai
+</div>
 
-            <div class="row">
-
-                ${input(
-                    "Nama Lengkap Pengantin Pria",
-                    "namaPria"
-                )}
-
-                ${input(
-                    "Nama Lengkap Pengantin Wanita",
-                    "namaWanita"
-                )}
-
-            </div>
-
-            <div class="row">
-
-                ${input(
-                    "Nama Panggilan Pria",
-                    "panggilanPria"
-                )}
-
-                ${input(
-                    "Nama Panggilan Wanita",
-                    "panggilanWanita"
-                )}
-
-            </div>
-
-            <div class="row">
-
-                ${textarea(
-                    "Nama Orang Tua Pria",
-                    "ortuPria"
-                )}
-
-                ${textarea(
-                    "Nama Orang Tua Wanita",
-                    "ortuWanita"
-                )}
-
-            </div>
+<div class="info">
+    Pilih urutan nama mempelai yang ingin ditampilkan
+    pada undangan.
+</div>
 
 
-            <div class="section-title">
-                Data Agama & Prosesi
-            </div>
+<div class="form-group">
+
+    <label>
+        Penulisan Nama Mempelai *
+    </label>
+
+    <label
+        style="
+            display:flex;
+            align-items:center;
+            gap:10px;
+            border:1px solid #ddd;
+            padding:13px;
+            border-radius:10px;
+            margin-bottom:10px;
+            cursor:pointer;
+            font-weight:normal;
+        "
+    >
+
+        <input
+            type="radio"
+            name="urutanMempelai"
+            value="Mempelai Pria → Mempelai Wanita"
+            style="width:auto;"
+        >
+
+        <span>
+            Mempelai Pria → Mempelai Wanita
+        </span>
+
+    </label>
+
+
+    <label
+        style="
+            display:flex;
+            align-items:center;
+            gap:10px;
+            border:1px solid #ddd;
+            padding:13px;
+            border-radius:10px;
+            margin-bottom:10px;
+            cursor:pointer;
+            font-weight:normal;
+        "
+    >
+
+        <input
+            type="radio"
+            name="urutanMempelai"
+            value="Mempelai Wanita → Mempelai Pria"
+            style="width:auto;"
+        >
+
+        <span>
+            Mempelai Wanita → Mempelai Pria
+        </span>
+
+    </label>
+
+</div>
+
+
+<div class="row">
+
+    ${input(
+        "Nama Lengkap Pengantin Pria",
+        "namaPria"
+    )}
+
+    ${input(
+        "Nama Lengkap Pengantin Wanita",
+        "namaWanita"
+    )}
+
+</div>
+
+
+<div class="row">
+
+    ${input(
+        "Nama Panggilan Pria",
+        "panggilanPria"
+    )}
+
+    ${input(
+        "Nama Panggilan Wanita",
+        "panggilanWanita"
+    )}
+
+</div>
+
+
+<div class="row">
+
+    ${textarea(
+        "Nama Orang Tua Pria",
+        "ortuPria"
+    )}
+
+    ${textarea(
+        "Nama Orang Tua Wanita",
+        "ortuWanita"
+    )}
+
+</div>
+
+
+<div class="section-title">
+    Data Agama & Prosesi
+</div>
 
 
             <div class="form-group">
