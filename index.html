@@ -3056,13 +3056,24 @@ function buatDataUtama() {
     if (kategoriDipilih === "Pernikahan") {
 
         pesan +=
-            "*DATA PENGANTIN*\n\n";
+    "*DATA PENGANTIN*\n\n";
 
 
-        pesan +=
-            "Nama Pria : " +
-            getValue("namaPria") +
-            "\n";
+const urutanMempelai =
+    document.querySelector(
+        'input[name="urutanMempelai"]:checked'
+    )?.value || "-";
+
+pesan +=
+    "Urutan Nama : " +
+    urutanMempelai +
+    "\n\n";
+
+
+pesan +=
+    "Nama Pria : " +
+    getValue("namaPria") +
+    "\n";
 
 
         pesan +=
