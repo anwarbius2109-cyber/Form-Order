@@ -1402,43 +1402,63 @@ function buatForm(kategori) {
 
 
             <div class="section-title">
-                Data Resepsi
+                Data Acara 2
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Jenis Acara
+                </label>
+                <select id="jenisAcara2">
+                    <option value="Resepsi">Resepsi</option>
+                    <option value="Akad Nikah">Akad Nikah</option>
+                    <option value="Ngunduh Mantu">Ngunduh Mantu</option>
+                    <option value="Lamaran">Lamaran</option>
+                    <option value="Tunangan">Tunangan</option>
+                    <option value="Pemberkatan">Pemberkatan</option>
+                    <option value="Pengajian">Pengajian</option>
+                    <option value="Siraman">Siraman</option>
+                    <option value="Syukuran">Syukuran</option>
+                    <option value="Khitanan">Khitanan</option>
+                    <option value="Aqiqah">Aqiqah</option>
+                    <option value="Ulang Tahun">Ulang Tahun</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
             </div>
 
             <div class="row">
-
                 ${tanggal(
-                    "Tanggal Resepsi",
+                    "Tanggal Acara 2",
                     "tanggalResepsi"
                 )}
 
                 ${input(
-                    "Waktu Resepsi",
+                    "Waktu Acara 2",
                     "waktuResepsi",
                     "Contoh: 11.00 - 14.00 WIB"
                 )}
-
             </div>
 
             ${input(
-                "Lokasi Resepsi",
-                "lokasiResepsi"
+                "Lokasi Acara 2",
+                "lokasiResepsi",
+                "Nama tempat"
             )}
 
             ${textarea(
-                "Alamat Resepsi",
-                "alamatResepsi"
+                "Alamat Acara 2",
+                "alamatResepsi",
+                "Alamat lengkap"
             )}
 
             ${input(
-                "Link Google Maps Resepsi",
+                "Link Google Maps Acara 2",
                 "mapsResepsi",
                 "https://maps.google.com/..."
-            )}
-
-        `;
+            )}`;
 
     }
+
 
 
     /* =================================================
