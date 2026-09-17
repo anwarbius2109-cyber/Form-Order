@@ -1402,43 +1402,63 @@ function buatForm(kategori) {
 
 
             <div class="section-title">
-                Data Resepsi
+                Data Acara 2
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Jenis Acara
+                </label>
+                <select id="jenisAcara2">
+                    <option value="Resepsi">Resepsi</option>
+                    <option value="Akad Nikah">Akad Nikah</option>
+                    <option value="Ngunduh Mantu">Ngunduh Mantu</option>
+                    <option value="Lamaran">Lamaran</option>
+                    <option value="Tunangan">Tunangan</option>
+                    <option value="Pemberkatan">Pemberkatan</option>
+                    <option value="Pengajian">Pengajian</option>
+                    <option value="Siraman">Siraman</option>
+                    <option value="Syukuran">Syukuran</option>
+                    <option value="Khitanan">Khitanan</option>
+                    <option value="Aqiqah">Aqiqah</option>
+                    <option value="Ulang Tahun">Ulang Tahun</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
             </div>
 
             <div class="row">
-
                 ${tanggal(
-                    "Tanggal Resepsi",
+                    "Tanggal Acara 2",
                     "tanggalResepsi"
                 )}
 
                 ${input(
-                    "Waktu Resepsi",
+                    "Waktu Acara 2",
                     "waktuResepsi",
                     "Contoh: 11.00 - 14.00 WIB"
                 )}
-
             </div>
 
             ${input(
-                "Lokasi Resepsi",
-                "lokasiResepsi"
+                "Lokasi Acara 2",
+                "lokasiResepsi",
+                "Nama tempat"
             )}
 
             ${textarea(
-                "Alamat Resepsi",
-                "alamatResepsi"
+                "Alamat Acara 2",
+                "alamatResepsi",
+                "Alamat lengkap"
             )}
 
             ${input(
-                "Link Google Maps Resepsi",
+                "Link Google Maps Acara 2",
                 "mapsResepsi",
                 "https://maps.google.com/..."
-            )}
-
-        `;
+            )}`;
 
     }
+
 
 
     /* =================================================
@@ -2435,7 +2455,7 @@ function buatForm(kategori) {
         </p>
 
         <a
-            href="https://shopee.co.id/product/99830023/29130684751/"
+            href="https://shopee.co.id/product/99830023/41450563672/"
             target="_blank"
             rel="noopener noreferrer"
             class="payment-shopee"
@@ -2614,15 +2634,12 @@ function toggleFiturTambahan(checkbox) {
 
     if (checkbox.checked && detail) {
         if (checkbox.value === "Rekening Tambahan") {
-            let jumlah = Number(document.getElementById("jumlahRekeningTambahan")?.value || 1);
-            jumlah = Math.max(1, Math.min(10, jumlah));
+            const jumlah = 1;
             let html = `
                 <div class="feature-description">Rp10.000 / rekening.</div>
-                <div class="form-group">
-                    <label>Jumlah Rekening Tambahan</label>
-                    <input type="number" id="jumlahRekeningTambahan" min="1" max="10" value="${jumlah}">
-                </div>
-                <div id="rekeningTambahanContainer"></div>
+                <input type="hidden" id="jumlahRekeningTambahan" value="1">
+                <div id="${isExclusive ? "exclusive" : "addon"}RekeningTambahanContainer" class="rekeningTambahanContainer"></div>
+                <button type="button" class="btn-tambah btnTambahRekeningTambahan" onclick="tambahRekeningTambahan(this)">+ Tambah Rekening 2</button>
             `;
             detail.innerHTML = html;
             renderRekeningTambahan(jumlah);
@@ -2675,11 +2692,14 @@ function toggleFiturTambahan(checkbox) {
     hitungTotalFiturTambahan();
 }
 
-function renderRekeningTambahan(jumlah) {
-    const container = document.getElementById("rekeningTambahanContainer");
+function renderRekeningTambahan(jumlah, containerId) {
+    const container = containerId
+        ? document.getElementById(containerId)
+        : document.querySelector('.feature-detail[style*="display: block"] .rekeningTambahanContainer');
     if (!container) return;
+    const jumlahAman = Math.max(1, Math.min(10, Number(jumlah) || 1));
     let html = "";
-    for (let i = 1; i <= jumlah; i++) {
+    for (let i = 1; i <= jumlahAman; i++) {
         html += `
             <div class="rekening-box" style="margin-top:10px;padding:12px;border:1px solid #e5e7eb;border-radius:10px;">
                 <strong>Rekening Tambahan ${i}</strong>
@@ -2689,11 +2709,45 @@ function renderRekeningTambahan(jumlah) {
             </div>`;
     }
     container.innerHTML = html;
-    const qty=document.getElementById("jumlahRekeningTambahan");
-    if(qty){ qty.addEventListener("input",()=>{
-        let n=Math.max(1,Math.min(10,Number(qty.value)||1));
-        qty.value=n; renderRekeningTambahan(n); hitungTotalFiturTambahan(); updateNominalPembayaranOtomatis();
-    });}
+    updateTombolTambahRekening(container);
+}
+
+function tambahRekeningTambahan(button) {
+    const detail = button?.closest('.feature-detail');
+    const container = detail?.querySelector('.rekeningTambahanContainer');
+    if (!container) return;
+
+    const jumlahSaatIni = container.querySelectorAll('.rekening-box').length;
+    if (jumlahSaatIni >= 10) return;
+
+    const i = jumlahSaatIni + 1;
+    const box = document.createElement('div');
+    box.className = 'rekening-box';
+    box.style.cssText = 'margin-top:10px;padding:12px;border:1px solid #e5e7eb;border-radius:10px;';
+    box.innerHTML = `
+        <strong>Rekening Tambahan ${i}</strong>
+        ${input("Bank / E-Wallet", "rekeningTambahanBank" + i, "Contoh: BCA / Mandiri / DANA")}
+        ${input("Nomor Rekening / E-Wallet", "rekeningTambahanNomor" + i, "Masukkan nomor rekening")}
+        ${input("Atas Nama", "rekeningTambahanNama" + i, "Nama pemilik rekening")}
+    `;
+    container.appendChild(box);
+    updateTombolTambahRekening(container);
+    hitungTotalFiturTambahan();
+    updateNominalPembayaranOtomatis();
+    renderRingkasanPesananMsainvitation();
+}
+
+function updateTombolTambahRekening(container) {
+    const detail = container?.closest('.feature-detail');
+    const btn = detail?.querySelector('.btnTambahRekeningTambahan');
+    if (!container || !btn) return;
+    const jumlah = container.querySelectorAll('.rekening-box').length;
+    if (jumlah >= 10) {
+        btn.style.display = 'none';
+    } else {
+        btn.style.display = 'block';
+        btn.textContent = '+ Tambah Rekening ' + (jumlah + 1);
+    }
 }
 
 function hitungTotalFiturTambahan() {
@@ -2709,8 +2763,7 @@ function hitungTotalFiturTambahan() {
         }
 
         if (cb.value === "Rekening Tambahan") {
-            let jumlah = parseInt(document.getElementById("jumlahRekeningTambahan")?.value || "1", 10);
-            if (isNaN(jumlah) || jumlah < 1) jumlah = 1;
+            const jumlah = Math.max(1, document.querySelectorAll(".rekening-box").length);
             harga *= jumlah;
         }
 
@@ -2759,7 +2812,8 @@ function toggleFiturExclusive(checkbox) {
         "Galeri Foto Tambahan": "detailGaleri",
         "Video Prewedding": "detailVideo",
         "Live Streaming": "detailLive",
-        "Dress Code": "detailDressCode"
+        "Dress Code": "detailDressCode",
+        "Rekening Tambahan": "exclusiveAddonRekeningTambahan"
     };
 
     const detail = document.getElementById(detailMap[checkbox.value]);
@@ -2805,6 +2859,18 @@ function toggleFiturExclusive(checkbox) {
 
     if (checkbox.value === "Live Streaming") {
         detail.innerHTML = `${input("Link Live Streaming", "linkLiveStreaming", "Contoh: https://youtube.com/live/...")}`;
+    }
+
+    if (checkbox.value === "Rekening Tambahan") {
+        detail.innerHTML = `
+            <div class="feature-description">Rp10.000 / rekening.</div>
+            <input type="hidden" id="jumlahRekeningTambahanExclusive" value="1">
+            <div id="exclusiveRekeningTambahanContainer" class="rekeningTambahanContainer"></div>
+            <button type="button" class="btn-tambah btnTambahRekeningTambahan" onclick="tambahRekeningTambahan(this)">+ Tambah Rekening 2</button>
+        `;
+        renderRekeningTambahan(1, "exclusiveRekeningTambahanContainer");
+        hitungTotalFiturTambahan();
+        updateNominalPembayaranOtomatis();
     }
 
     if (checkbox.value === "Dress Code") {
@@ -3126,7 +3192,7 @@ function ambilFiturTambahanBerbayar() {
         } else if (cb.value === "Dress Code") {
             item.data = getValue("addonDressCodeValue");
         } else if (cb.value === "Rekening Tambahan") {
-            const jumlah = Math.max(1, Number(document.getElementById("jumlahRekeningTambahan")?.value || 1));
+            const jumlah = Math.max(1, document.querySelectorAll(".rekening-box").length);
             item.jumlah = jumlah;
             item.harga = jumlah * 10000;
             item.data = [];
@@ -5077,25 +5143,34 @@ function ambilHargaFiturTambahanOtomatis() {
     });
 
     // Galeri Foto: Rp5.000 per foto
+    // Form saat ini menggunakan jumlahFotoTambahan.
+    // Selector lama tetap didukung agar fungsi lain tidak berubah.
     const galeri = document.querySelector('input[name="fiturTambahanBerbayar"][value="Galeri Foto"]');
     if (galeri?.checked) {
-        const jumlah = Number(
-            document.querySelector('#jumlahGaleriTambahan, input[name="jumlahGaleriTambahan"]')?.value || 1
+        const field = document.querySelector(
+            '#jumlahFotoTambahan, input[name="jumlahFotoTambahan"], #jumlahGaleriTambahan, input[name="jumlahGaleriTambahan"]'
         );
+        const jumlah = Math.max(1, Number(field?.value || 1));
         total -= Number(galeri.dataset.harga || 5000);
-        total += Math.max(1, jumlah) * 5000;
+        total += jumlah * 5000;
     }
 
     // Rekening tambahan: Rp10.000 / rekening
     const rekening = document.querySelector(
-        'input[name="fiturTambahanBerbayar"][value*="Rekening"], input[name="fiturTambahanBerbayar"][value*="rekening"]'
+        'input[name="fiturTambahanBerbayar"][value*="Rekening"]:checked, input[name="fiturTambahanBerbayar"][value*="rekening"]:checked'
     );
     if (rekening?.checked) {
-        const jumlah = Number(
-            document.querySelector('#jumlahRekeningTambahan, input[name="jumlahRekeningTambahan"]')?.value || 1
+        // Jumlah rekening mengikuti jumlah box rekening yang benar-benar ditambahkan.
+        // Rekening 1 = Rp10.000, setiap rekening berikutnya menambah Rp10.000.
+        const jumlahBox = document.querySelectorAll('.rekening-box').length;
+        const field = document.querySelector(
+            '#jumlahRekeningTambahan, input[name="jumlahRekeningTambahan"]'
         );
+        const jumlah = jumlahBox > 0
+            ? jumlahBox
+            : Math.max(1, Number(field?.value || 1));
         total -= Number(rekening.dataset.harga || 10000);
-        total += Math.max(1, jumlah) * 10000;
+        total += jumlah * 10000;
     }
 
     return total;
@@ -5185,8 +5260,8 @@ document.addEventListener("change", function(e) {
     if (
         e.target.matches('input[name="paketUndangan"]') ||
         e.target.matches('input[name="fiturTambahanBerbayar"]') ||
-        e.target.matches('#jumlahGaleriTambahan, input[name="jumlahGaleriTambahan"]') ||
-        e.target.matches('#jumlahRekeningTambahan, input[name="jumlahRekeningTambahan"]')
+        e.target.matches('#jumlahFotoTambahan, input[name="jumlahFotoTambahan"]') ||
+        e.target.matches('#jumlahGaleriTambahan, input[name="jumlahGaleriTambahan"]')
     ) {
         updateNominalPembayaranOtomatis();
     }
@@ -5194,8 +5269,8 @@ document.addEventListener("change", function(e) {
 
 document.addEventListener("input", function(e) {
     if (
-        e.target.matches('#jumlahGaleriTambahan, input[name="jumlahGaleriTambahan"]') ||
-        e.target.matches('#jumlahRekeningTambahan, input[name="jumlahRekeningTambahan"]')
+        e.target.matches('#jumlahFotoTambahan, input[name="jumlahFotoTambahan"]') ||
+        e.target.matches('#jumlahGaleriTambahan, input[name="jumlahGaleriTambahan"]')
     ) {
         updateNominalPembayaranOtomatis();
     }
@@ -5818,10 +5893,8 @@ function renderRingkasanPesananMsainvitation() {
         }
 
         if (cb.value === "Rekening Tambahan") {
-            const field =
-                document.getElementById("jumlahRekeningTambahan") ||
-                document.querySelector('[name="jumlahRekeningTambahan"]');
-            if (field) jumlah = Number(field.value || 1);
+            const jumlahRekening = document.querySelectorAll(".rekening-box").length;
+            jumlah = jumlahRekening > 0 ? jumlahRekening : 1;
         }
 
         jumlah = Math.max(1, jumlah);
@@ -5862,8 +5935,7 @@ document.addEventListener("change", function(e) {
 
 document.addEventListener("input", function(e) {
     if (
-        e.target.id === "jumlahFotoTambahan" ||
-        e.target.id === "jumlahRekeningTambahan"
+        e.target.id === "jumlahFotoTambahan"
     ) {
         setTimeout(renderRingkasanPesananMsainvitation, 50);
     }
