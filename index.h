@@ -1069,7 +1069,7 @@ function buatForm(kategori) {
                 value="Exclusive / Full Fitur"
                 onchange="ubahPaket()"
             >
-            <strong>✨ Exclusive / Full Fitur — Rp120.000<br><small>Semua fitur premium sudah tersedia dalam satu paket</small></strong>
+            <strong>✨ Exclusive / Full Fitur — Rp130.000<br><small>Semua fitur premium sudah tersedia dalam satu paket</small></strong>
         </label>
 </div>
 
@@ -2881,7 +2881,7 @@ function hitungTotalFiturTambahan() {
     const hargaPaket = {
         "Basic": 55000,
         "Premium": 80000,
-        "Exclusive / Full Fitur": 120000
+        "Exclusive / Full Fitur": 130000
     };
 
     const base = hargaPaket[paket] || 0;
@@ -5496,7 +5496,7 @@ function kirimWhatsApp() {
     const hargaPaket = {
         "Basic": 55000,
         "Premium": 80000,
-        "Exclusive / Full Fitur": 120000
+        "Exclusive / Full Fitur": 130000
     };
     const hargaDasarPaket = hargaPaket[fiturExclusive.paket] || 0;
     pesan += "Harga Paket : Rp" + hargaDasarPaket.toLocaleString("id-ID") + "\n";
